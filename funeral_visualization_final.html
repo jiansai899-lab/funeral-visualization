@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>조문객이 줄어들면, 장례는 얼마나 달라질까?</title>
+<style>
+:root{
+  --bg:#eef5ff;
+  --panel:#ffffff;
+  --text:#153b6b;
+  --muted:#6683a8;
+  --line:#c9d9ef;
+  --accent:#69d3a7;
+  --accent2:#f3a6c8;
+  --warm:#8fc7ff;
+  --danger:#ff8eb6;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:linear-gradient(180deg,#f7fbff 0%,#eef5ff 55%,#f9fcff 100%);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+  line-height:1.55;overflow-x:hidden;
+}
+a{color:inherit}
+.progress{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;z-index:999}
+nav{
+  position:fixed;right:22px;top:50%;transform:translateY(-50%);
+  z-index:20;display:flex;flex-direction:column;gap:9px;
+}
+nav a{
+  width:8px;height:8px;border-radius:50%;background:#9fb7d6;
+  border:1px solid #88a5ca;text-indent:-9999px;transition:.25s
+}
+nav a.active{background:var(--accent);transform:scale(1.45);border-color:var(--accent)}
+.section{
+  min-height:100vh;display:flex;align-items:center;padding:92px 6vw;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.wrap{width:min(var(--max),100%);margin:auto}
+.eyebrow{
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#ef7fb0;
+  margin-bottom:16px;font-weight:700
+}
+h1{font-size:clamp(44px,7vw,96px);line-height:1.02;letter-spacing:-.045em;margin:0 0 28px;color:#153b6b}
+h2{font-size:clamp(34px,5vw,66px);line-height:1.08;letter-spacing:-.035em;margin:0 0 22px;color:#174b83}
+h3{font-size:clamp(24px,3vw,38px);line-height:1.12;margin:0 0 16px}
+p{font-size:clamp(17px,1.7vw,23px);color:#345b88;margin:0}
+.zh{display:block;color:var(--muted);font-size:.72em;margin-top:10px}
+.big-number{font-size:clamp(72px,12vw,170px);font-weight:800;letter-spacing:-.06em;line-height:.85}
+.unit{font-size:.24em;color:var(--muted);letter-spacing:0}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 14px 40px rgba(44,91,143,.08)}
+.kicker{font-size:14px;color:var(--muted);margin-bottom:8px}
+.small{font-size:14px;color:var(--muted)}
+.source{font-size:12px;color:#6f8eb4;margin-top:20px}
+.source a{text-decoration:none;border-bottom:1px solid #555}
+.hero-visual{
+  position:relative;min-height:480px;border:1px solid var(--line);border-radius:28px;box-shadow:0 18px 55px rgba(44,91,143,.10);
+  background:linear-gradient(180deg,#ffffff,#eaf3ff);overflow:hidden;
+}
+.floor{position:absolute;inset:32px;display:grid;grid-template-columns:1fr 1.3fr;gap:18px}
+.room{border:1px solid #c5d7ee;border-radius:16px;position:relative;background:#f8fbff}
+.room .label{position:absolute;top:12px;left:14px;font-size:13px;color:#6683a8}
+.altar{
+  position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+  width:130px;height:78px;border:1px solid #9ab6d9;border-radius:12px
+}
+.altar:before{content:"故";position:absolute;inset:0;display:grid;place-items:center;font-size:34px;color:#3d6797}
+.people{position:absolute;inset:62px 18px 18px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px}
+.person{width:10px;height:10px;border-radius:50%;background:#7fa7d9;opacity:.8;transition:.5s}
+.person.fade{opacity:.12;transform:scale(.6)}
+.pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.03)}}
+.family-bars{display:flex;align-items:end;gap:12px;height:220px;margin-top:18px;margin-bottom:42px}
+.family-bar{flex:1;border-radius:12px 12px 4px 4px;background:#dfeafb;position:relative;min-width:38px}
+.family-bar.highlight{background:var(--accent)}
+.family-bar.highlight:not(.active){background:var(--accent)}
+.family-bar span{position:absolute;bottom:-34px;width:100%;text-align:center;font-size:13px;color:#6f8eb4}
+.scale{height:20px;border-top:1px solid #a9c0df;margin-top:48px;position:relative}
+.scale .tick{position:absolute;top:-7px;width:1px;height:14px;background:#90acd1}
+.range{height:26px;border-radius:14px;position:absolute;top:-41px;display:flex;align-items:center;padding:0 12px;font-size:13px;font-weight:700;color:#14365f}
+.range.expected{left:48%;width:47%;background:var(--warm)}
+.range.proper{left:3%;width:45%;background:var(--accent)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.compare .box{padding:24px;border-radius:20px;background:#ffffff;border:1px solid #c9d9ef}
+.compare .pct{font-size:54px;font-weight:800}
+.bar-row{display:grid;grid-template-columns:110px 1fr 70px;gap:12px;align-items:center;margin:16px 0}
+.track{height:18px;background:#e3edf9;border-radius:10px;overflow:hidden}
+.fill{height:100%;border-radius:10px;background:var(--accent);width:0;transition:1s}
+.fill.fixed{background:var(--accent2)}
+.funeral-stage{display:grid;grid-template-columns:160px 1fr;gap:30px;align-items:center}
+.person-count{font-size:52px;font-weight:800}
+.rows{display:flex;flex-direction:column;gap:18px}
+.cost-label{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;color:#6683a8}
+.costbar{height:26px;background:#dfeafb;border-radius:14px;overflow:hidden}
+.costbar>div{height:100%;border-radius:14px;transition:1s;width:0}
+.costbar .fixedbar{background:var(--accent2)}
+.costbar .guestbar{background:var(--accent)}
+.floorplan{
+  display:grid;grid-template-columns:1fr 1.45fr;gap:14px;min-height:420px;
+  border:1px solid #33343a;border-radius:24px;padding:18px;background:#f8fbff;transition:.8s
+}
+.fp-room{border:1px solid #bfd1e8;border-radius:14px;position:relative;overflow:hidden;transition:.8s}
+.fp-room .title{position:absolute;top:10px;left:12px;color:#6683a8;font-size:13px}
+.tables{position:absolute;left:15px;right:15px;top:44px;bottom:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;transition:.8s}
+.table-dot{border:1px solid #9ab6d9;border-radius:50%;opacity:.9;transition:.8s}
+.floorplan.smallplan{grid-template-columns:1.3fr .7fr}
+.floorplan.smallplan .tables{grid-template-columns:repeat(2,1fr)}
+.floorplan.smallplan .table-dot:nth-child(n+5){opacity:.08;transform:scale(.5)}
+.floorplan.tinyplan{grid-template-columns:1.6fr .4fr}
+.floorplan.tinyplan .tables{grid-template-columns:1fr}
+.floorplan.tinyplan .table-dot:nth-child(n+3){opacity:.04;transform:scale(.3)}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stat-trio .card{text-align:center}
+.stat-trio .n{font-size:56px;font-weight:800;color:#4fbf95}
+.stat-trio .card:nth-child(2) .n{color:#ef7fb0}
+.stat-trio .card:nth-child(3) .n{color:#4e9be8}
+.donut{
+  width:320px;height:320px;border-radius:50%;
+  background:conic-gradient(var(--accent) 0 71.8%, #dfeafb 71.8% 100%);
+  display:grid;place-items:center;margin:auto;position:relative
+}
+.donut:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:var(--bg)}
+.donut .inside{position:relative;z-index:2;text-align:center}
+.donut .inside b{font-size:54px}
+.reality{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch
+}
+.reality .panel{border-radius:24px;padding:30px;border:1px solid var(--line);background:#f8fbff}
+.reality .huge{font-size:70px;font-weight:850;line-height:1}
+.final{
+  text-align:center;max-width:960px;margin:auto
+}
+.final .tagline{font-size:clamp(46px,8vw,110px);font-weight:850;line-height:.95;letter-spacing:-.055em}
+.accent{color:#4fbf95}
+.fadeup{opacity:0;transform:translateY(28px);transition:.8s}
+.fadeup.show{opacity:1;transform:none}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+button{
+  background:#ffffff;color:#3d6797;border:1px solid #b7cae3;border-radius:999px;
+  padding:10px 15px;font:inherit;cursor:pointer
+}
+button.active{background:var(--accent);color:#14365f;border-color:var(--accent)}
+@media(max-width:800px){
+  nav{display:none}.grid-2,.compare,.reality{grid-template-columns:1fr}
+  .stat-trio{grid-template-columns:1fr}.section{padding:76px 22px}
+  .hero-visual{min-height:400px}.floor{grid-template-columns:1fr}
+  .floor .room:nth-child(2){display:none}
+  .funeral-stage{grid-template-columns:1fr}
+}
+
+body:before, body:after{
+  content:"";position:fixed;pointer-events:none;z-index:-1;filter:blur(90px);opacity:.35;border-radius:50%;
+}
+body:before{width:360px;height:360px;background:#b9dcff;left:-90px;top:12vh}
+body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
+
+
+/* 추가 인터랙션 */
+.tooltip{
+  position:fixed;z-index:200;pointer-events:none;background:#153b6b;color:white;
+  padding:8px 10px;border-radius:10px;font-size:12px;opacity:0;transform:translateY(6px);
+  transition:.18s;box-shadow:0 8px 24px rgba(21,59,107,.18)
+}
+.tooltip.show{opacity:1;transform:none}
+.person.interactive{cursor:pointer}
+.person.interactive:hover{transform:scale(1.55);background:#ef7fb0}
+.stat-trio .card{transition:.25s;cursor:pointer}
+.stat-trio .card:hover{transform:translateY(-8px);box-shadow:0 18px 46px rgba(44,91,143,.14)}
+.family-bar{cursor:pointer;transition:.25s}
+.family-bar:hover{transform:translateY(-8px)}
+.family-bar.active{outline:3px solid #ef7fb0;outline-offset:4px;background:#ef7fb0!important;color:#fff;box-shadow:0 10px 26px rgba(239,127,176,.20)}
+.floorplan{cursor:grab}
+.floorplan:active{cursor:grabbing}
+.table-dot{cursor:pointer}
+.table-dot:hover{background:#ef7fb0;border-color:#ef7fb0;transform:scale(1.08)}
+.range{cursor:pointer;transition:.25s}
+.range:hover{transform:translateY(-4px)}
+.reason-cloud{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
+.reason-chip{
+  border:1px solid var(--line);background:white;border-radius:999px;padding:16px 20px;
+  font-weight:700;color:#315d8e;cursor:pointer;transition:.25s
+}
+.reason-chip:hover,.reason-chip.active{background:#fff3f8;border-color:#ef7fb0;color:#c95a8a;transform:translateY(-3px)}
+.reason-detail{
+  margin-top:18px;padding:20px;border-radius:18px;background:#ffffff;border:1px solid var(--line);
+  min-height:92px;box-shadow:0 10px 28px rgba(44,91,143,.07)
+}
+.age-bars{display:flex;gap:12px;align-items:flex-end;height:220px;margin-top:12px;margin-bottom:44px}
+.age-bar{flex:1;background:#cfe2f8;border-radius:14px 14px 6px 6px;position:relative;cursor:pointer;transition:.3s}
+.age-bar:hover{transform:translateY(-7px);background:#b8d8fb}
+.age-bar.active{background:#69d3a7}
+.age-bar .v{position:absolute;top:-34px;width:100%;text-align:center;font-weight:800;color:#174b83}
+.age-bar .l{position:absolute;bottom:-30px;width:100%;text-align:center;color:#6683a8;font-size:13px}
+.toggle-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.toggle-pill{
+  padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);
+  cursor:pointer;transition:.22s;color:#315d8e
+}
+.toggle-pill.active{background:#153b6b;color:#fff;border-color:#153b6b}
+.compare-meter{position:relative;height:110px;margin-top:34px}
+.compare-dot{
+  position:absolute;top:44px;width:26px;height:26px;border-radius:50%;transform:translateX(-50%);
+  transition:.8s cubic-bezier(.2,.7,.2,1);box-shadow:0 8px 24px rgba(44,91,143,.16)
+}
+.compare-dot.idea{background:#69d3a7}
+.compare-dot.real{background:#ef7fb0}
+.compare-line{position:absolute;left:5%;right:5%;top:56px;height:4px;background:#d8e5f4;border-radius:999px}
+.compare-gap{
+  position:absolute;top:50px;height:16px;border-radius:999px;background:linear-gradient(90deg,#69d3a7,#ef7fb0);
+  opacity:.35;transition:.8s
+}
+.sticky-story{display:grid;grid-template-columns:minmax(300px,.82fr) minmax(480px,1.18fr);gap:48px;align-items:start}
+.sticky-vis{position:sticky;top:120px}
+.story-steps{display:flex;flex-direction:column;gap:42vh}
+.story-step{padding:26px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.8);transition:.35s;cursor:pointer;user-select:none}
+.story-step.active{border-color:#69d3a7;box-shadow:0 14px 40px rgba(105,211,167,.18);transform:translateX(8px);background:#f8fffc}
+.metric-bubble{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#edf7ff;color:#315d8e;font-size:13px}
+.mini-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:#6683a8}
+.mini-legend span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.mini-legend .g:before{background:#69d3a7}.mini-legend .p:before{background:#ef7fb0}.mini-legend .b:before{background:#8fc7ff}
+@media(max-width:900px){.sticky-story{grid-template-columns:1fr}.sticky-vis{position:relative;top:auto}.story-steps{gap:28px}}
+
+
+.interactive-slider-wrap{
+  margin-top:22px;padding:18px;border-radius:18px;background:#f4f9ff;border:1px solid #c9d9ef
+}
+.interactive-slider-head{display:flex;justify-content:space-between;align-items:center;color:#315d8e;font-size:14px}
+.interactive-slider-head strong{font-size:22px;color:#ef7fb0}
+.visitor-slider{width:100%;margin:18px 0 5px;accent-color:#69d3a7;cursor:pointer}
+.slider-scale{display:flex;justify-content:space-between;font-size:11px;color:#7b95b5}
+.click-flash{animation:clickFlash .35s ease}
+@keyframes clickFlash{0%{transform:scale(1)}50%{transform:scale(.985)}100%{transform:scale(1)}}
+.person-cloud{
+  display:grid;grid-template-columns:repeat(20,1fr);gap:4px;margin-top:18px;min-height:90px
+}
+.person-cloud span{aspect-ratio:1;border-radius:50%;background:#8fb5df;transition:.3s;opacity:.9}
+.person-cloud span.off{opacity:.08;transform:scale(.55)}
+
+
+/* 클릭형 인터랙션 */
+.click-options{
+  display:grid;
+  gap:16px;
+  align-content:start;
+}
+.option-card{
+  width:100%;
+  text-align:left;
+  padding:24px 26px;
+  border-radius:22px;
+  border:1px solid #c9d9ef;
+  background:#fff;
+  color:#174b83;
+  cursor:pointer;
+  transition:.25s ease;
+  box-shadow:0 10px 28px rgba(44,91,143,.06);
+}
+.option-card strong{
+  display:block;
+  font-size:34px;
+  line-height:1;
+  margin-bottom:12px;
+  color:#153b6b;
+}
+.option-card span{
+  display:block;
+  font-size:16px;
+  line-height:1.55;
+}
+.option-card:hover{
+  transform:translateY(-3px);
+  border-color:#8fc7ff;
+  box-shadow:0 14px 36px rgba(44,91,143,.11);
+}
+.option-card.active{
+  background:#f4fffa;
+  border-color:#69d3a7;
+  box-shadow:0 14px 34px rgba(105,211,167,.16);
+}
+.option-card.active strong{color:#3aae82}
+
+/* 비용 인식 축 클릭 표시 */
+.cost-range-btn{
+  border:none;
+  color:#153b6b;
+  cursor:pointer;
+  height:38px;
+  padding:0 14px;
+  font-weight:800;
+  transition:.2s;
+  box-shadow:none;
+}
+.cost-range-btn.active{
+  outline:none;
+  transform:translateY(-2px);
+  box-shadow:none;
+}
+.scale{overflow:visible}
+.axis-highlight{
+  position:absolute;
+  top:-3px;
+  height:6px;
+  border-radius:999px;
+  transition:.35s ease;
+  z-index:2;
+}
+.axis-highlight.proper{left:0;width:50%;background:#69d3a7}
+.axis-highlight.expected{left:50%;width:50%;background:#8fc7ff}
+.axis-marker{
+  position:absolute;
+  top:-11px;
+  width:4px;
+  height:22px;
+  border-radius:999px;
+  background:#ef7fb0;
+  transition:.35s ease;
+  z-index:3;
+}
+.axis-marker.start{left:0}
+.axis-marker.end{left:50%}
+
+</style>
+</head>
+<body><div id="tooltip" class="tooltip"></div>
+<div class="progress"></div>
+<nav id="nav"></nav>
+
+<section id="s1" class="section">
+  <div class="wrap grid-2">
+    <div class="fadeup">
+      <div class="eyebrow">한국 장례 데이터 스토리</div>
+      <h1>조문객이 줄어들면,<br><span class="accent">장례는 얼마나 달라질까?</span></h1>
+      <p>많은 사람을 맞이하기 위해 만들어진 장례식.<br>하지만 가족은 작아지고, 조문객도 줄어들고 있습니다.
+      </p>
+    </div>
+    <div class="hero-visual fadeup">
+      <div class="floor">
+        <div class="room"><span class="label">빈소</span><div class="altar"></div></div>
+        <div class="room"><span class="label">접객실</span><div class="people" id="heroPeople"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s2" class="section">
+  <div class="wrap grid-2">
+    <div class="fadeup">
+      <div class="eyebrow">01 · 사망</div>
+      <h2>죽음은 줄어들지 않았습니다.</h2>
+      <p>2025년 한국의 사망자는 <b>362,968명</b>. 문제는 죽음의 수가 아니라, 죽음을 함께 맞이하는 가족과 관계의 구조가 바뀌고 있다는 점입니다.
+      </p>
+      <div class="source">Source · 국가데이터처, 2025년 사망원인통계</div>
+    </div>
+    <div class="card fadeup">
+      <div class="kicker">2025 사망자 수</div>
+      <div class="big-number">362,968<span class="unit">명</span></div>
+      <p class="small">전년 대비 약 1.2% 증가</p>
+    </div>
+  </div>
+</section>
+
+<section id="s3" class="section">
+  <div class="wrap grid-2">
+    <div class="fadeup">
+      <div class="eyebrow">02 · 가구</div>
+      <h2>가족의 단위는 더 작아지고 있습니다.</h2>
+      <p>2024년 한국의 1인 가구는 약 <b>804.5만 가구</b>, 전체 일반가구의 <b>36.1%</b>입니다.
+      </p>
+      <div class="source">Source · 국가데이터처, 1인가구 통계</div>
+    </div>
+    <div class="card fadeup">
+      <div class="kicker">가구 유형의 변화</div>
+      <div class="family-bars" id="familyBars">
+        <div class="family-bar" data-label="4인 이상 가구" data-info="가구원 수가 많은 전통적 가구 형태" style="height:48%"><span>4+</span></div>
+        <div class="family-bar" data-label="3인 가구" data-info="중간 규모 가구" style="height:62%"><span>3</span></div>
+        <div class="family-bar" data-label="2인 가구" data-info="소규모 가구" style="height:78%"><span>2</span></div>
+        <div class="family-bar highlight active" data-label="1인 가구" data-info="2024년 전체 일반가구의 36.1%" style="height:100%"><span>1인 36.1%</span></div>
+      </div>
+      <div class="reason-detail" id="familyDetail" style="margin-top:0;"><b>1인 가구</b><br>2024년 전체 일반가구의 36.1%</div>
+    </div>
+  </div>
+</section>
+
+<section id="s4" class="section">
+  <div class="wrap">
+    <div class="fadeup" style="max-width:900px">
+      <div class="eyebrow">03 · 구조의 불일치</div>
+      <h2>가족은 작아졌지만,<br>장례는 여전히 <span class="accent">많은 사람</span>을 전제로 합니다.</h2>
+      <p>빈소, 접객실, 식사 공간, 음식과 음료. 전통적 장례의 많은 요소는 ‘조문객을 맞이하는 일’과 연결되어 있습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="s5" class="section">
+  <div class="wrap grid-2">
+    <div class="fadeup">
+      <div class="eyebrow">04 · 비용 인식의 차이</div>
+      <h2>사람들이 예상하는 장례비와,<br>적정하다고 생각하는 장례비는 다릅니다.</h2>
+      <p><b>61.1%</b>는 실제 장례에 1,000만~2,000만 원 정도가 들 것으로 예상했고, <b>57.2%</b>는 적정 비용이 1,000만 원 미만이라고 답했습니다.
+      </p>
+      <div class="source">Source · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
+    </div>
+    <div class="card fadeup">
+      <div class="kicker">비용 인식의 차이</div>
+      <div style="height:160px;position:relative;margin-top:48px">
+        <button class="range proper cost-range-btn active" data-mode="proper" type="button">적정 비용 · &lt; 1,000만</button>
+        <button class="range expected cost-range-btn" data-mode="expected" type="button">예상 비용 · 1,000~2,000만</button>
+        <div class="scale" id="costAxis">
+          <span class="tick" style="left:0"></span>
+          <span class="tick" style="left:25%"></span>
+          <span class="tick" style="left:50%"></span>
+          <span class="tick" style="left:75%"></span>
+          <span class="tick" style="left:100%"></span>
+          <div id="axisHighlight" class="axis-highlight proper"></div>
+          <div id="axisMarkerStart" class="axis-marker start"></div>
+          <div id="axisMarkerEnd" class="axis-marker end"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#6f8eb4">
+          <span>0</span><span>500</span><span>1,000</span><span>1,500</span><span>2,000만원</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="s6" class="section">
+  <div class="wrap">
+    <div class="fadeup" style="max-width:900px;margin-bottom:42px">
+      <div class="eyebrow">05 · 시각화 1</div>
+      <h2>시각화 1 · 비용<br><span class="accent">사람이 줄어도 장례비가 같은 비율로 줄어들지는 않습니다.</span></h2>
+      <p>고정비는 크게 변하지 않지만, 음식·음료·접객 관련 비용은 조문객 수에 따라 달라집니다.</p>
+    </div>
+    <div class="sticky-story">
+      <div class="click-options" id="costStory">
+        <button class="option-card active" data-count="300" type="button">
+          <strong>300명</strong><span>많은 조문객을 전제로 한 장례</span>
+        </button>
+        <button class="option-card" data-count="150" type="button">
+          <strong>150명</strong><span>조문객이 절반으로 줄어도 고정비는 거의 유지</span>
+        </button>
+        <button class="option-card" data-count="50" type="button">
+          <strong>50명</strong><span>접객비는 크게 줄지만 기본 비용은 유지</span>
+        </button>
+      </div>
+      <div class="card fadeup">
+        <div class="metric-bubble">비용 구조 변화 지수</div>
+        <div class="person-cloud" id="costPeople" aria-label="조문객 수 시각화"></div>
+        <div class="funeral-stage" style="margin-top:22px">
+          <div>
+            <div class="kicker">조문객</div>
+            <div class="person-count" id="countLabel">300명</div>
+          </div>
+          <div class="rows">
+            <div>
+              <div class="cost-label"><span>고정비</span><span id="fixedText">80</span></div>
+              <div class="costbar"><div id="fixedBar" class="fixedbar"></div></div>
+            </div>
+            <div>
+              <div class="cost-label"><span>접객비</span><span id="guestText">100</span></div>
+              <div class="costbar"><div id="guestBar" class="guestbar"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-legend"><span class="p">고정비</span><span class="g">접객비</span></div>
+
+        <div class="interactive-slider-wrap">
+          <div class="interactive-slider-head">
+            <span>직접 조문객 수를 바꿔보세요</span>
+            <strong id="visitorSliderValue">300명</strong>
+          </div>
+          <input id="visitorSlider" class="visitor-slider" type="range" min="50" max="300" step="10" value="300" aria-label="조문객 수 조절">
+          <div class="slider-scale"><span>50명</span><span>150명</span><span>300명</span></div>
+        </div>
+
+        <p class="small" style="margin-top:22px">※ 위 수치는 전국 평균가격이 아니라 ‘구조 변화를 설명하기 위한 지수형 시각화’입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="s7" class="section">
+  <div class="wrap">
+    <div class="fadeup" style="margin-bottom:34px">
+      <div class="eyebrow">06 · 장례 준비의 부담</div>
+      <h2>장례 준비에서 사람들이 가장 크게 느끼는 부담</h2>
+      <p>비용뿐 아니라, 갑작스러운 상황과 비교의 어려움도 함께 작용합니다.
+      </p>
+    </div>
+    <div class="stat-trio fadeup">
+      <div class="card"><div class="n">63.8%</div><h3>시간 부족</h3><p class="small">갑작스러운 상황으로 준비할 시간이 부족</p></div>
+      <div class="card"><div class="n">60.5%</div><h3>비용 부담</h3><p class="small">장례 비용 자체가 부담스럽다</p></div>
+      <div class="card"><div class="n">42.8%</div><h3>비교의 어려움</h3><p class="small">서비스·상품 가격 비교가 어렵다</p></div>
+    </div>
+    <div class="source">Source · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
+  </div>
+</section>
+
+
+<section id="s8" class="section">
+  <div class="wrap">
+    <div class="fadeup" style="margin-bottom:34px">
+      <div class="eyebrow">07 · 시각화 2</div>
+      <h2>시각화 2 · 구성 및 규모</h2>
+      <p><b>300명을 위한 공간과 50명을 위한 공간은 같아야 할까요?</b></p>
+    </div>
+    <div class="sticky-story">
+      <div class="click-options" id="spaceStory">
+        <button class="option-card active" data-size="large" type="button">
+          <strong>300명</strong><span>큰 접객실 · 많은 테이블 · 넓은 식사 공간</span>
+        </button>
+        <button class="option-card" data-size="small" type="button">
+          <strong>150명</strong><span>추모 공간 유지 · 접객 영역 축소</span>
+        </button>
+        <button class="option-card" data-size="tiny" type="button">
+          <strong>50명</strong><span>가족 중심 · 최소한의 접객 구성</span>
+        </button>
+      </div>
+      <div>
+        <div class="floorplan fadeup" id="floorplan">
+          <div class="fp-room"><span class="title">추모 공간</span><div class="altar"></div></div>
+          <div class="fp-room"><span class="title">접객 공간</span><div class="tables">
+            <div class="table-dot" data-tip="접객 테이블"></div><div class="table-dot" data-tip="접객 테이블"></div><div class="table-dot" data-tip="접객 테이블"></div><div class="table-dot" data-tip="접객 테이블"></div>
+            <div class="table-dot" data-tip="접객 테이블"></div><div class="table-dot" data-tip="접객 테이블"></div><div class="table-dot" data-tip="접객 테이블"></div><div class="table-dot" data-tip="접객 테이블"></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="s9" class="section">
+  <div class="wrap grid-2">
+    <div class="donut fadeup">
+      <div class="inside"><b>71.8%</b><br><span class="small">무빈소 장례 의향</span></div>
+    </div>
+    <div class="fadeup">
+      <div class="eyebrow">08 · 인식의 변화</div>
+      <h2>사람들의 생각은 이미 바뀌고 있습니다.</h2>
+      <p><b>71.8%</b>는 자신의 장례라면 무빈소 장례를 고려할 의향이 있다고 답했습니다.
+      </p>
+      <div class="source">Source · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="s9b" class="section">
+  <div class="wrap grid-2">
+    <div class="fadeup">
+      <div class="eyebrow">08-1 · 작은 장례를 고려하는 이유</div>
+      <h2>왜 더 작은 장례를 고려할까요?</h2>
+      <p>무빈소 장례를 고려하는 이유는 비용만의 문제가 아닙니다. 관계의 방식과 가족 중심의 의미도 함께 작용합니다.</p>
+      <div class="reason-cloud" id="reasonCloud">
+        <div class="reason-chip active" data-title="비용" data-value="58.1%" data-text="장례 비용 부담을 줄일 수 있어서">비용 · 58.1%</div>
+        <div class="reason-chip" data-title="관계" data-value="54.5%" data-text="형식적인 조문이나 인간관계를 신경 쓰지 않아도 돼서">관계 · 54.5%</div>
+        <div class="reason-chip" data-title="가족" data-value="50.8%" data-text="가족 중심으로 조용히 보내는 것이 더 의미 있다고 생각해서">가족 · 50.8%</div>
+      </div>
+      <div class="reason-detail" id="reasonDetail"><b>비용 · 58.1%</b><br>장례 비용 부담을 줄일 수 있어서</div>
+    </div>
+    <div class="card fadeup">
+      <div class="kicker">연령대별 무빈소 장례 수용도</div>
+      <div class="age-bars" id="ageBars">
+        <div class="age-bar" data-label="20대" data-value="57.0" style="height:57%"><span class="v">57.0%</span><span class="l">20대</span></div>
+        <div class="age-bar" data-label="40대" data-value="76.0" style="height:76%"><span class="v">76.0%</span><span class="l">40대</span></div>
+        <div class="age-bar active" data-label="50대" data-value="80.0" style="height:80%"><span class="v">80.0%</span><span class="l">50대</span></div>
+        <div class="age-bar" data-label="60대" data-value="79.5" style="height:79.5%"><span class="v">79.5%</span><span class="l">60대</span></div>
+      </div>
+      <div class="reason-detail" id="ageDetail" style="margin-top:0;"><b>50대 · 80.0%</b><br>무빈소 장례 수용 의향이 가장 높게 나타난 연령대 중 하나입니다.</div>
+    </div>
+  </div>
+</section>
+
+<section id="s10" class="section">
+  <div class="wrap">
+    <div class="reality fadeup">
+      <div class="panel">
+        <div class="kicker">생각</div>
+        <div class="huge accent">71.8%</div>
+        <h3>무빈소 장례를 고려할 수 있다</h3>
+      </div>
+      <div class="panel">
+        <div class="kicker">현실</div>
+        <div class="huge" style="color:#ef7fb0">95.1%</div>
+        <h3>최근 경험한 장례는 일반 빈소 장례</h3>
+      </div>
+    </div>
+    <div class="compare-meter fadeup" id="compareMeter">
+      <div class="compare-line"></div>
+      <div class="compare-gap" id="compareGap"></div>
+      <div class="compare-dot idea" id="ideaDot" data-tip="무빈소 장례 고려 의향 71.8%"></div>
+      <div class="compare-dot real" id="realDot" data-tip="최근 일반 빈소 장례 경험 95.1%"></div>
+    </div>
+    <div class="fadeup" style="margin-top:44px;max-width:980px">
+      <h2>생각은 이미 바뀌고 있지만,<br><span class="accent">장례의 형태는 아직 그대로입니다.</span></h2>
+      <p>그리고 <b>80.3%</b>는 앞으로 무빈소 장례가 더 늘어날 것이라고 봤습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="s11" class="section">
+  <div class="wrap final fadeup">
+    <div class="eyebrow">09 · 디자인 질문</div>
+    <div class="tagline">규모보다<br><span style="color:#ef7fb0">관계의 밀도.</span></div>
+    <p style="margin-top:30px">장례의 크기는 관습이 아니라 사람의 수와 관계에 맞춰질 수 없을까?<br>
+    많은 사람이 오는 장례에서, 필요한 사람이 머무는 장례로.
+    </p>
+    <div class="source" style="margin-top:38px">
+      자료 출처 · 국가데이터처 / 엠브레인 트렌드모니터 / e하늘 장사정보시스템
+    </div>
+  </div>
+</section>
+
+<script>
+const sections=[...document.querySelectorAll('.section')];
+const nav=document.getElementById('nav');
+sections.forEach((s,i)=>{
+  const a=document.createElement('a');a.href='#'+s.id;a.textContent=i+1;nav.appendChild(a)
+});
+const navLinks=[...nav.querySelectorAll('a')];
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.fadeup').forEach(el=>el.classList.add('show'));
+      const idx=sections.indexOf(e.target);
+      navLinks.forEach((a,i)=>a.classList.toggle('active',i===idx));
+      if(e.target.id==='s1'){
+        [...document.querySelectorAll('#heroPeople .person')].forEach((p,i)=>{
+          p.classList.toggle('fade', i>20);
+        });
+      }
+    }
+  })
+},{threshold:.35});
+sections.forEach(s=>obs.observe(s));
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.querySelector('.progress').style.width=((scrollY/h)*100)+'%';
+});
+
+const hero=document.getElementById('heroPeople');
+for(let i=0;i<70;i++){const d=document.createElement('div');d.className='person';hero.appendChild(d)}
+
+function setCost(count){
+  const data={
+    300:{fixed:80,guest:100},
+    150:{fixed:78,guest:52},
+    50:{fixed:76,guest:18}
+  }[count];
+  document.getElementById('countLabel').textContent=count+'명';
+  document.getElementById('fixedBar').style.width=data.fixed+'%';
+  document.getElementById('guestBar').style.width=data.guest+'%';
+  document.getElementById('fixedText').textContent=data.fixed;
+  document.getElementById('guestText').textContent=data.guest;
+  document.querySelectorAll('#costControls button').forEach(b=>b.classList.toggle('active',+b.dataset.count===count));
+  document.querySelectorAll('#costStory .option-card').forEach(s=>s.classList.toggle('active',+s.dataset.count===count));
+}
+const costControls=document.getElementById('costControls');
+if(costControls){
+  costControls.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-count]');
+    if(btn)setCost(+btn.dataset.count);
+  });
+}
+setTimeout(()=>setCost(300),300);
+
+function setSpace(size){
+  const fp=document.getElementById('floorplan');
+  fp.classList.remove('smallplan','tinyplan');
+  if(size==='small')fp.classList.add('smallplan');
+  if(size==='tiny')fp.classList.add('tinyplan');
+  document.querySelectorAll('#spaceControls button').forEach(b=>b.classList.toggle('active',b.dataset.size===size));
+  document.querySelectorAll('#spaceStory .option-card').forEach(s=>s.classList.toggle('active',s.dataset.size===size));
+}
+const spaceControls=document.getElementById('spaceControls');
+if(spaceControls){
+  spaceControls.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-size]');
+    if(btn)setSpace(btn.dataset.size);
+  });
+}
+
+const tooltip=document.getElementById('tooltip');
+function showTip(e,text){
+  tooltip.textContent=text;
+  tooltip.style.left=(e.clientX+14)+'px';
+  tooltip.style.top=(e.clientY+14)+'px';
+  tooltip.classList.add('show');
+}
+function hideTip(){tooltip.classList.remove('show')}
+
+document.querySelectorAll('[data-tip]').forEach(el=>{
+  el.addEventListener('mousemove',e=>showTip(e,el.dataset.tip));
+  el.addEventListener('mouseleave',hideTip);
+});
+
+document.querySelectorAll('#heroPeople .person').forEach((p,i)=>{
+  p.classList.add('interactive');
+  p.dataset.tip='조문객 '+(i+1);
+  p.addEventListener('mousemove',e=>showTip(e,p.dataset.tip));
+  p.addEventListener('mouseleave',hideTip);
+});
+
+document.querySelectorAll('#familyBars .family-bar').forEach(bar=>{
+  bar.addEventListener('click',()=>{
+    document.querySelectorAll('#familyBars .family-bar').forEach(b=>b.classList.remove('active'));
+    bar.classList.add('active');
+    document.getElementById('familyDetail').innerHTML='<b>'+bar.dataset.label+'</b><br>'+bar.dataset.info;
+  })
+});
+
+document.querySelectorAll('#reasonCloud .reason-chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('#reasonCloud .reason-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    document.getElementById('reasonDetail').innerHTML='<b>'+chip.dataset.title+' · '+chip.dataset.value+'</b><br>'+chip.dataset.text;
+  })
+});
+
+document.querySelectorAll('#ageBars .age-bar').forEach(bar=>{
+  bar.addEventListener('click',()=>{
+    document.querySelectorAll('#ageBars .age-bar').forEach(b=>b.classList.remove('active'));
+    bar.classList.add('active');
+    document.getElementById('ageDetail').innerHTML='<b>'+bar.dataset.label+' · '+bar.dataset.value+'%</b><br>무빈소 장례 수용 의향';
+  });
+  bar.addEventListener('mousemove',e=>showTip(e,bar.dataset.label+' '+bar.dataset.value+'%'));
+  bar.addEventListener('mouseleave',hideTip);
+});
+
+
+
+const meter=document.getElementById('compareMeter');
+if(meter){
+  const mObs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      const idea=71.8, real=95.1;
+      document.getElementById('ideaDot').style.left=idea+'%';
+      document.getElementById('realDot').style.left=real+'%';
+      const gap=document.getElementById('compareGap');
+      gap.style.left=idea+'%';
+      gap.style.width=(real-idea)+'%';
+    }
+  },{threshold:.5});
+  mObs.observe(meter);
+}
+
+
+// ===== 안정화된 직접 인터랙션 =====
+function flash(el){
+  if(!el)return;
+  el.classList.remove('click-flash');
+  void el.offsetWidth;
+  el.classList.add('click-flash');
+}
+
+function ensureCostPeople(){
+  const cloud=document.getElementById('costPeople');
+  if(!cloud || cloud.children.length)return;
+  for(let i=0;i<100;i++){
+    const dot=document.createElement('span');
+    dot.title='조문객';
+    cloud.appendChild(dot);
+  }
+}
+function updateCostPeople(count){
+  ensureCostPeople();
+  const visible=Math.max(1,Math.round(count/3));
+  document.querySelectorAll('#costPeople span').forEach((d,i)=>{
+    d.classList.toggle('off',i>=visible);
+  });
+}
+
+// Smooth model for manual slider: fixed cost changes only slightly, guest cost changes strongly.
+function setCostManual(count){
+  const fixed=Math.round(76 + (count-50)*(4/250));
+  const guest=Math.round(18 + (count-50)*(82/250));
+  const countLabel=document.getElementById('countLabel');
+  const fixedBar=document.getElementById('fixedBar');
+  const guestBar=document.getElementById('guestBar');
+  const fixedText=document.getElementById('fixedText');
+  const guestText=document.getElementById('guestText');
+  if(countLabel)countLabel.textContent=count+'명';
+  if(fixedBar)fixedBar.style.width=fixed+'%';
+  if(guestBar)guestBar.style.width=guest+'%';
+  if(fixedText)fixedText.textContent=fixed;
+  if(guestText)guestText.textContent=guest;
+  updateCostPeople(count);
+}
+
+const slider=document.getElementById('visitorSlider');
+const sliderValue=document.getElementById('visitorSliderValue');
+if(slider){
+  slider.addEventListener('input',()=>{
+    const count=+slider.value;
+    if(sliderValue)sliderValue.textContent=count+'명';
+    setCostManual(count);
+  });
+}
+
+// Clicking the 300 / 150 / 50 narrative cards now updates immediately.
+document.querySelectorAll('#costStory .option-card').forEach(step=>{
+  step.setAttribute('tabindex','0');
+  const activate=()=>{
+    const count=+step.dataset.count;
+    setCost(count);
+    updateCostPeople(count);
+    if(slider){slider.value=count;if(sliderValue)sliderValue.textContent=count+'명';}
+    flash(step);
+  };
+  step.addEventListener('click',activate);
+  step.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
+});
+
+document.querySelectorAll('#spaceStory .option-card').forEach(step=>{
+  step.setAttribute('tabindex','0');
+  const activate=()=>{ setSpace(step.dataset.size); flash(step); };
+  step.addEventListener('click',activate);
+  step.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
+});
+
+// Floor plan table click: highlight a table and show a tooltip.
+document.querySelectorAll('.table-dot').forEach((table,i)=>{
+  table.addEventListener('click',e=>{
+    e.stopPropagation();
+    table.style.background=table.style.background ? '' : '#f3a6c8';
+    table.style.borderColor=table.style.background ? '#ef7fb0' : '#9ab6d9';
+    flash(table);
+  });
+});
+
+// Burden cards click feedback
+document.querySelectorAll('.stat-trio .card').forEach(card=>{
+  card.setAttribute('tabindex','0');
+  card.addEventListener('click',()=>flash(card));
+});
+
+// Initialize all dynamic visuals.
+updateCostPeople(300);
+if(slider){slider.value=300;if(sliderValue)sliderValue.textContent='300명';}
+setCost(300);
+setSpace('large');
+
+
+// 비용 인식의 차이: 상단 녹색/파란 버튼을 클릭하면 x축에 범위를 표시
+const costRangeButtons=document.querySelectorAll('.cost-range-btn');
+const axisHighlight=document.getElementById('axisHighlight');
+const axisMarkerStart=document.getElementById('axisMarkerStart');
+const axisMarkerEnd=document.getElementById('axisMarkerEnd');
+
+function setCostAxis(mode){
+  costRangeButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.mode===mode));
+  if(!axisHighlight || !axisMarkerStart || !axisMarkerEnd) return;
+  axisHighlight.classList.remove('proper','expected');
+  axisHighlight.classList.add(mode);
+  if(mode==='proper'){
+    axisMarkerStart.style.left='0%';
+    axisMarkerEnd.style.left='50%';
+  }else{
+    axisMarkerStart.style.left='50%';
+    axisMarkerEnd.style.left='100%';
+  }
+}
+costRangeButtons.forEach(btn=>{
+  btn.addEventListener('click',()=>setCostAxis(btn.dataset.mode));
+});
+setCostAxis('proper');
+
+</script>
+</body>
+</html>
