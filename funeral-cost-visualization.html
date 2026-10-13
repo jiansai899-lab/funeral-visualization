@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#000000" />
+<title>조문객 수에 따라 달라지는 장례비</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+:root{--ink:#e6edf2;--muted:#a0b0bc;--blue:#9bbbd0;--blue2:#536f83;--pink:#efa9c0;--pale:#1a2b37;--line:#2a3d4b;--paper:#101a23;--white:transparent;--gold:#dfc98e;--dark:#0d1720;--shadow:none}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,'Noto Sans KR',sans-serif} button{font:inherit;color:inherit} .wrap{width:min(1200px,calc(100% - 48px));margin:auto} .topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.12em;color:#688094}.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink)}.brand-mark{width:25px;height:25px;border:1px solid var(--blue);border-radius:50%;display:grid;place-items:center;color:var(--blue);font-size:14px}.topnote{letter-spacing:.03em}
+.hero{padding:90px 0 64px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}.eyebrow{font:500 11px 'DM Mono',monospace;letter-spacing:.16em;color:#7894a8;text-transform:uppercase;margin-bottom:22px}.hero h1{font-size:clamp(38px,6vw,76px);line-height:1.13;letter-spacing:-.065em;margin:0;font-weight:700}.hero h1 em{font-style:normal;color:#7895aa}.hero p{font-size:15px;line-height:1.85;color:#748695;max-width:590px;margin:24px 0 0}.hero-index{font:500 11px 'DM Mono',monospace;color:#91a4b2;align-self:start;padding-top:18px}.section{padding:44px 0 100px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(24px,3.3vw,39px);letter-spacing:-.05em;margin:8px 0 0;line-height:1.25}.section-head p{font-size:13px;color:var(--muted);line-height:1.7;margin:0;max-width:380px}.tag{font:500 10px 'DM Mono',monospace;letter-spacing:.14em;color:#7d97aa}.rule{height:1px;background:var(--line);margin:0 0 34px}
+.scenario{background:var(--white);border:1px solid #e4ebf0;border-radius:22px;padding:28px 32px 24px;box-shadow:var(--shadow)}.scenario-top{display:flex;align-items:center;justify-content:space-between;gap:24px}.scenario-label{font-size:11px;color:#8a9ba8;letter-spacing:.09em}.scenario-count{font-size:14px;font-weight:700;color:#59758a;margin-top:7px}.total{text-align:right}.total small{display:block;font-size:11px;color:#8a9ba8;margin-bottom:4px}.total strong{font-size:clamp(27px,4vw,43px);letter-spacing:-.06em;font-weight:600}.total strong span{font-size:15px;letter-spacing:0;margin-left:4px;color:#60798c}.slider-row{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;margin:24px 0 8px}.range-wrap{position:relative;padding-top:12px}.range-wrap input{width:100%;accent-color:#7897ad;cursor:pointer}.ticks{display:flex;justify-content:space-between;color:#98a8b3;font-size:10px;letter-spacing:.02em;margin-top:8px}.range-caption{font-size:10px;color:#8a9ba8;white-space:nowrap}.flower-stage{height:440px;border-radius:14px;background:radial-gradient(ellipse at center,#19242a 0%,#111a20 62%,#0d151a 100%);position:relative;overflow:hidden;margin-top:24px;display:grid;place-items:center}.flower-stage:before,.flower-stage:after{content:"";position:absolute;border:1px solid #dce6ed12;border-radius:50%;width:280px;height:280px}.flower-stage:after{width:370px;height:370px}.flower-note{position:absolute;top:22px;left:24px;font:10px 'DM Mono',monospace;letter-spacing:.1em;color:#aebbc1}.flower-total{position:absolute;right:24px;top:20px;color:#e7edf0;text-align:right;font-size:11px;line-height:1.8}.flower-total b{display:block;color:#fff;font-size:15px;font-weight:500}.flower-svg{width:300px;height:300px;z-index:1;overflow:visible}.petal{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .22s ease,filter .22s ease,opacity .4s,fill .3s}.petal:hover{transform:scale(1.06);filter:brightness(1.12)}.core{fill:#e6d69a;stroke:#fff2c2;stroke-width:2}.flower-legend{position:absolute;bottom:20px;left:24px;display:flex;gap:20px;color:#c6d1d5;font-size:10px}.key{display:flex;gap:7px;align-items:center}.swatch{width:8px;height:8px;border-radius:50%;background:#edf1ef}.swatch.pink{background:var(--pink)}.flower-help{position:absolute;bottom:20px;right:24px;color:#9daeb7;font-size:10px}.scenario-foot{display:flex;justify-content:space-between;gap:16px;padding-top:17px;color:#8797a3;font-size:10px;line-height:1.7}.scenario-foot strong{color:#627a8b;font-weight:600}.scenario-select{display:flex;gap:8px;margin-top:23px}.scenario-select button{flex:1;border:1px solid var(--line);background:var(--white);border-radius:10px;padding:12px 10px;cursor:pointer;transition:.2s}.scenario-select button:hover,.scenario-select button[aria-pressed="true"]{border-color:#90aabe;background:#f0f5f8}.scenario-select b{font-size:12px;display:block}.scenario-select span{font-size:10px;color:#8b9aa6}
+.insight{display:flex;gap:20px;align-items:center;padding:30px 2px 0}.insight-mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#e3edf3;color:#6f8da3;flex:none}.insight p{margin:0;font-size:15px;line-height:1.8;color:#526b7d}.insight strong{color:var(--ink)}
+.breakdown{padding-top:84px}.breakdown-layout{display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:start}.legend-panel{background:#fff;border:1px solid #e3ebf0;border-radius:18px;padding:22px 20px;position:sticky;top:20px}.legend-panel h3{font-size:13px;margin:0 0 17px}.legend-row{display:grid;grid-template-columns:9px 1fr auto;gap:10px;align-items:start;padding:12px 0;border-bottom:1px solid #edf1f4;font-size:11px;line-height:1.5}.legend-row:last-child{border:0}.legend-dot{width:8px;height:8px;border-radius:2px;margin-top:4px}.legend-row small{display:block;color:#93a0a9;font-size:10px;margin-top:3px}.legend-row b{font:500 11px 'DM Mono',monospace;white-space:nowrap}.legend-note{font-size:10px;line-height:1.7;color:#93a0a9;margin:16px 0 0}.ribbon-card{background:#fff;border:1px solid #e3ebf0;border-radius:18px;padding:24px 22px 18px;box-shadow:var(--shadow);overflow:hidden}.ribbon-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:14px}.ribbon-head strong{font-size:12px}.ribbon-head span{font-size:10px;color:#9aa8b1}.sankey{width:100%;height:auto;min-height:360px;display:block;overflow:visible}.flow{fill:none;stroke-width:12;stroke-linecap:butt;opacity:.27;transition:opacity .25s,stroke-width .25s;cursor:pointer}.flow:hover,.flow.active{opacity:.85;stroke-width:16}.flow-label{font-family:'Noto Sans KR',sans-serif;font-size:11px;fill:#617789}.flow-value{font:600 12px 'DM Mono',monospace;fill:#2e475b}.col-label{font:500 10px 'Noto Sans KR',sans-serif;fill:#94a2ac}.node{stroke:#fff;stroke-width:1}.target-name{font:500 11px 'Noto Sans KR',sans-serif;fill:#617789}.target-value{font:600 15px 'DM Mono',monospace;fill:#284359}.target-share{font:10px 'DM Mono',monospace;fill:#9babb6}.ribbon-legend{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #edf1f4;padding-top:15px;color:#8b9ba7;font-size:10px;line-height:1.6}.ribbon-legend b{color:#5c7487;font-weight:600}.callout{margin-top:44px;padding:27px 30px;border-radius:16px;background:#e9f0f4;display:flex;justify-content:space-between;align-items:center;gap:20px}.callout p{margin:0;font-size:clamp(16px,2.3vw,23px);line-height:1.55;letter-spacing:-.035em}.callout p strong{color:#6b8ba2}.callout small{font-size:10px;color:#8094a3;max-width:230px;line-height:1.65}.footer{padding:32px 0 44px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;font-size:10px;color:#95a4ae;line-height:1.7}.tooltip{position:fixed;z-index:9;pointer-events:none;padding:9px 12px;border-radius:9px;background:#122a3a;color:white;font-size:11px;box-shadow:0 8px 24px #162c3c24;opacity:0;transform:translate(12px,12px);transition:opacity .15s}.tooltip.show{opacity:1}
+/* Unified dark canvas: sections share one continuous background. */
+.breakdown{width:min(1400px,calc(100vw - 64px));position:relative;left:50%;transform:translateX(-50%);padding-top:84px}
+.breakdown-layout{grid-template-columns:minmax(0,1fr);gap:0;width:100%}
+.breakdown .ribbon-card{width:100%;padding:24px 30px 24px}
+.breakdown .sankey{width:100%;height:auto;max-height:none;min-height:0}
+.breakdown .flow-label{font-size:13px}.breakdown .flow-value{font-size:14px}.breakdown .col-label{font-size:12px}.breakdown .target-name{font-size:13px}.breakdown .detail-label{font-size:14px}.breakdown .module-note{font-size:12px}.breakdown .subtotal-label{font-size:11px}.breakdown .subtotal-value{font-size:15px}.breakdown .target-share{font-size:11px}
+.breakdown .flow{stroke-linecap:round;transition:opacity .3s,stroke-width .3s}
+.breakdown .source-flow{stroke-width:25;opacity:.22}
+.breakdown .class-detail-flow{stroke-width:10;opacity:.32}
+.breakdown .detail-flow{stroke-width:6;opacity:.42}
+.breakdown .source-flow.active{stroke-width:34}.breakdown .class-detail-flow.active{stroke-width:15}.breakdown .detail-flow.active{stroke-width:9}
+.sankey text{fill:#d7e2e9}.sankey .flow-value,.sankey .subtotal-value{fill:#f2f6f8}.sankey .module-note,.sankey .subtotal-label,.sankey .target-share{fill:#b7c7d1}.sankey .detail-label{fill:#e0e8ed}
+body{background:#101a23;color:#e6edf2}
+.topbar{color:#a1b1bc}.brand{color:#e6edf2}.hero h1{color:#e6edf2}.hero h1 em{color:#9bbbd0}.hero p,.section-head p{color:#a0b0bc}.eyebrow,.tag{color:#9ab5c8}.hero-index{color:#91a9b8}
+.rule{background:#2a3d4b}
+.scenario,.legend-panel,.ribbon-card{background:transparent;border-color:transparent;box-shadow:none}
+.scenario{padding-left:0;padding-right:0}
+.scenario-select button{background:transparent;border-color:#334a5a;color:#e2eaf0}.scenario-select button:hover,.scenario-select button[aria-pressed="true"]{background:#1b2d39;border-color:#91b5ce}
+.scenario-label,.total small,.range-caption{color:#9aabb7}.scenario-count,.total strong span{color:#b5c6d0}.total strong{color:#f0f4f6}.ticks{color:#9aabb7}
+.flower-stage{background:radial-gradient(ellipse at center,#1b2b36 0%,#15232d 64%,#101a23 100%);border:1px solid #263a49;border-radius:18px}
+.flower-stage:before,.flower-stage:after{border-color:#dce6ed10}
+.flower-legend,.flower-note,.flower-total{color:#c9d5dd}.flower-total b{color:#f3f6f7}.flower-help{color:#9eafb9}
+.scenario-foot{color:#9baab4}.scenario-foot strong{color:#bed0db}
+.insight p{color:#bccbd4}.insight strong{color:#f1f4f6}.insight-mark{background:#213542;color:#b5cad8}
+.legend-panel h3,.ribbon-head strong{color:#e5edf2}.legend-row{border-color:#2a3d4b;color:#d7e0e6}.legend-row small,.legend-note,.ribbon-head span{color:#9cabb5}
+.ribbon-card{overflow:visible}.ribbon-legend{border-color:#2a3d4b;color:#a3b0b9}.ribbon-legend b{color:#d5e0e6}
+.flow-label{fill:#d7e1e7}.flow-value{fill:#f0f4f6}.col-label{fill:#9eafb9}.node{stroke:#15232d}.target-name{fill:#d6e0e6}.target-value{fill:#eff4f6}.target-share{fill:#a9b7c0}
+.callout{background:#1a2b37;border:1px solid #2b4050}.callout p{color:#e3ebf0}.callout p strong{color:#a7c9df}.callout small{color:#a7b6bf}
+.footer{color:#98a9b5;border-color:#2a3d4b}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+body{min-width:1024px}.section{padding-top:48px;padding-bottom:32px}.flower-stage{height:480px}.flower-svg{width:380px;height:380px}
+
+/* Black canvas with pink and green typography. */
+:root{--paper:#000;--ink:#efabc5;--muted:#9eddb8;--line:#294237;--pink:#efa9c0}
+body{background:#000;color:#efabc5}
+.section-head h2,.total strong,.flower-total b{color:#efabc5}
+.tag,.section-head p,.scenario-label,.total small,.range-caption,.ticks,.flower-note,.flower-total,.flower-help,.scenario-foot,.footer{color:#9eddb8}
+.scenario-count,.total strong span,.scenario-foot strong{color:#efabc5}
+.rule{background:#294237}
+.flower-stage{background:#000;border-color:#294237}
+.flower-stage:before,.flower-stage:after{border-color:#9eddb812}
+.flower-legend{color:#9eddb8}
+.scenario-select button{background:#000;border-color:#294237;color:#efabc5}
+.scenario-select button span{color:#9eddb8}
+.scenario-select button:hover,.scenario-select button[aria-pressed="true"]{background:#122018;border-color:#9eddb8;color:#ffc0d8}
+.range-wrap input{accent-color:#9eddb8}
+.footer{border-color:#294237}
+.tooltip{background:#102018;color:#efabc5;border:1px solid #386449;box-shadow:0 8px 24px #0008}
+
+.funeral-mode{display:flex;gap:10px;margin-bottom:20px}.funeral-mode button{padding:11px 18px;border:1px solid #294237;border-radius:10px;background:#000;color:#9eddb8;cursor:pointer}.funeral-mode button[aria-pressed="true"]{border-color:#efabc5;color:#efabc5;background:#201017}.cost-note{margin:14px 0 0;font-size:12px;line-height:1.7;color:#9eddb8}.cost-note a{color:#efabc5}.scenario-select button:disabled{opacity:.3;cursor:not-allowed}
+
+.cost-note.simple-note{color:#858585;font-size:10px;line-height:1.8;margin-top:24px}.cost-note.simple-note a{color:#969696}#simpleCostBreakdown{color:#858585;font-size:11px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="section" aria-labelledby="flower-title">
+    <div class="section-head"><div><div class="tag">SCENARIO 01</div><h2 id="flower-title">사람 수는 달라도,<br>기본 비용은 남습니다.</h2></div><p>아래 버튼이나 슬라이더를 눌러 조문객 수를 바꿔보세요. 꽃잎과 총비용이 함께 변합니다.</p></div><div class="rule"></div>
+    <div class="scenario">
+      <div class="funeral-mode" role="group" aria-label="장례 방식 선택"><button data-mode="standard" aria-pressed="true">일반 장례</button><button data-mode="simple" aria-pressed="false">무빈소 장례 · 최대 50명</button></div>
+      <div class="scenario-top"><div><div class="scenario-label">조문객 수</div><div class="scenario-count" id="guestCaption">50명 시나리오</div></div><div class="total"><small>예상 장례비</small><strong id="totalCost">711.0<span>만 원</span></strong></div></div>
+      
+      <div id="simpleBudget" hidden style="margin:14px 0;color:#9eddb8;font-size:13px"><label for="receptionRate">1인당 추가 접대 예산</label> <input id="receptionRate" type="number" min="0" max="100" step="0.5" value="2" style="width:76px;margin:0 8px;padding:8px;border:1px solid #294237;border-radius:8px;background:#000;color:#efabc5">만 원 <span style="font-size:11px">· 조정 가능한 가정값</span></div>
+      <div class="slider-row"><div class="range-wrap"><input id="guestRange" type="range" min="0" max="300" step="10" value="50" aria-label="조문객 수 선택"><div class="ticks"><span>0명</span><span>50명</span><span>100명</span><span>200명</span><span>300명</span></div></div><div class="range-caption">10명 단위로 변경</div></div>
+      <div class="flower-stage"><div class="flower-note">FUNERAL COST / PETAL MODEL</div><div class="flower-total">기본 비용 <b>약 306.5만 원</b></div><svg class="flower-svg" id="flower" viewBox="0 0 300 300" role="img" aria-label="조문객 수에 따라 꽃잎 수가 달라지는 장례비 시각화"><g id="petals"></g><circle class="core" cx="150" cy="150" r="9"/></svg><div class="flower-legend"><span class="key"><i class="swatch" style="background:var(--gold)"></i>꽃술 · 기본 비용</span><span class="key"><i class="swatch"></i>50명 · 흰 꽃잎</span><span class="key"><i class="swatch pink"></i>접대 비용</span></div><div class="flower-help">꽃잎에 마우스를 올려 설명 보기</div></div>
+      <div class="scenario-foot"><span><strong>읽는 법</strong> · 10명 단위로 조절합니다. 인원이 줄면 꽃잎이 떨어지고, 늘면 다시 피어납니다.</span><span>슬라이더로 시나리오 변경</span></div>
+      <div class="scenario-select" role="group" aria-label="조문객 수 빠른 선택"><button data-index="0" aria-pressed="false"><b>0명</b><span>306.5만 원</span></button><button data-index="1" aria-pressed="true"><b>50명</b><span>711만 원</span></button><button data-index="2" aria-pressed="false"><b>100명</b><span>946.4만 원</span></button><button data-index="3" aria-pressed="false"><b>200명</b><span>1,113.9만 원</span></button><button data-index="4" aria-pressed="false"><b>300명</b><span>1,281.3만 원</span></button></div>
+      <div id="simpleCostBreakdown" hidden style="margin-top:22px"></div><p class="cost-note" id="costNote">일반 장례 비용은 기존 시각화 금액을 바탕으로 한 보간 예시입니다.</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap footer"><span>장례비 꽃잎 시각화</span><span>기존 0·50·100·300명 비용 사이를 구간별 선형 보간한 추정값입니다. 10명 단위로 변하며 실제 견적이나 전국 평균을 의미하지 않습니다.</span></footer>
+<div class="tooltip" id="tooltip" role="status"></div>
+<script>
+const scenarios=[{guests:0,cost:306.5,white:0,pink:0},{guests:50,cost:711,white:30,pink:0},{guests:100,cost:946.4,white:30,pink:42},{guests:200,cost:1113.85,white:30,pink:60},{guests:300,cost:1281.3,white:30,pink:78}];
+const range=document.querySelector('#guestRange'), petals=document.querySelector('#petals'), total=document.querySelector('#totalCost'), guestCaption=document.querySelector('#guestCaption'),tip=document.querySelector('#tooltip');
+function makePetal(i,kind,count){const angle=(i+(kind==='variable'?.5:0))*360/count;const radius=kind==='fixed'?8:42;const length=kind==='fixed'?72:78;const width=kind==='fixed'?7.2:6.6;const opacity=kind==='fixed'?1:.92;let ns='http://www.w3.org/2000/svg',group=document.createElementNS(ns,'g'),path=document.createElementNS(ns,'path');group.setAttribute('transform',`rotate(${angle} 150 150)`);path.setAttribute('d',`M150 ${150-radius} C ${150-width} ${150-radius-length*.32}, ${150-width*.72} ${150-radius-length*.82}, 150 ${150-radius-length} C ${150+width*.72} ${150-radius-length*.82}, ${150+width} ${150-radius-length*.32}, 150 ${150-radius} Z`);path.setAttribute('fill',kind==='fixed'?'#f0f2ed':(i%2?'#e7a0b7':'#efb1c4'));path.setAttribute('stroke',kind==='fixed'?'#cfd8d5':'#c77f98');path.setAttribute('stroke-width','0.7');path.setAttribute('stroke-opacity','0.62');path.setAttribute('opacity',opacity);path.setAttribute('class','petal');path.dataset.kind=kind;path.addEventListener('mouseenter',e=>showTip(e,kind==='fixed'?'흰 꽃잎 · 50명부터 나타나는 첫 번째 꽃잎 단계':'접대 비용 · 음식과 음료 등 조문객 수에 따라 달라지는 비용'));path.addEventListener('mousemove',moveTip);path.addEventListener('mouseleave',hideTip);group.append(path);return group}
+let lastGuests=null,funeralMode="standard";
+function model(n){if(n<=50)return {white:Math.round(n*.6),pink:0};if(n<=100)return {white:30,pink:Math.round((n-50)*.84)};return {white:30,pink:Math.round(42+(n-100)*.18)};}
+function renderGuests(n){
+ n=Math.min(n,funeralMode==='simple'?50:300);
+ const m=model(n),old=lastGuests===null?m:model(lastGuests),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ hideTip();
+ if(lastGuests!==null&&n<lastGuests&&!reduced){
+  const oldPetals=Array.from(petals.children);
+  ['variable','fixed'].forEach(kind=>{
+   const key=kind==='fixed'?'white':'pink',remove=old[key]-m[key];
+   oldPetals.filter(g=>g.firstChild.dataset.kind===kind).slice(-Math.max(0,remove)).forEach((g,i)=>{
+    if(remove<=0)return;
+    const wrapper=document.createElementNS('http://www.w3.org/2000/svg','g');wrapper.style.pointerEvents='none';wrapper.append(g);document.querySelector('#flower').append(wrapper);
+    const drift=(Math.random()-.5)*100;
+    const animation=wrapper.animate([{transform:'translate(0px,0px)',opacity:1},{transform:`translate(${drift*.3}px,45px)`,opacity:.8,offset:.35},{transform:`translate(${drift}px,170px)`,opacity:0}],{duration:1000,delay:i*18,easing:'ease-in',fill:'forwards'});
+    animation.finished.then(()=>wrapper.remove());
+   });
+  });
+ }
+ petals.replaceChildren();
+ for(let i=0;i<m.pink;i++)petals.append(makePetal(i,'variable',m.pink));
+ for(let i=0;i<m.white;i++)petals.append(makePetal(i,'fixed',m.white));
+
+ const anchors=scenarios.filter(s=>s.cost!==null);
+ let cost=anchors[0].cost;
+ for(let i=1;i<anchors.length;i++){const a=anchors[i-1],b=anchors[i];if(n<=b.guests){cost=a.cost+(b.cost-a.cost)*(n-a.guests)/(b.guests-a.guests);break;}}
+ if(funeralMode==='simple'){const rate=Math.max(0,Number(document.querySelector('#receptionRate').value)||0);cost=238+n*rate;document.querySelector('#simpleCostBreakdown').textContent=`기본 상품 238만 원 + 접대 예산 ${n}명 × ${rate}만 원 = ${cost.toLocaleString('ko-KR')}만 원`;document.querySelectorAll('.scenario-select button span').forEach((label,i)=>{if(i<2)label.textContent=`${(238+scenarios[i].guests*rate).toLocaleString('ko-KR')}만 원`;});}
+ total.innerHTML=`${cost.toLocaleString('ko-KR',{minimumFractionDigits:1,maximumFractionDigits:1})}<span>만 원</span>`;
+ guestCaption.textContent=`${n}명 시나리오`;
+ document.querySelectorAll('.scenario-select button').forEach((b,i)=>b.setAttribute('aria-pressed',String(scenarios[i].guests===n)));
+ range.value=n;range.setAttribute('aria-valuetext',`${n}명`);lastGuests=n;
+}
+document.querySelectorAll('.scenario-select button').forEach(b=>b.addEventListener('click',()=>renderGuests(scenarios[+b.dataset.index].guests)));
+range.addEventListener('input',()=>renderGuests(+range.value));
+document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{
+ funeralMode=button.dataset.mode;const simple=funeralMode==='simple';
+ document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ range.max=simple?50:300;
+ document.querySelector('.ticks').innerHTML=(simple?[0,10,20,30,40,50]:[0,50,100,200,300]).map(n=>`<span>${n}명</span>`).join('');
+ document.querySelectorAll('.scenario-select button').forEach((b,i)=>b.disabled=simple&&scenarios[i].guests>50);
+ document.querySelectorAll('.scenario-select button span').forEach((label,i)=>label.textContent=simple&&i<2?'238만 원 · 기본 상품':`${scenarios[i].cost.toLocaleString('ko-KR',{maximumFractionDigits:1})}만 원`);
+ document.querySelector('#simpleBudget').hidden=!simple;
+ document.querySelector('#simpleCostBreakdown').hidden=!simple;
+ document.querySelector('#costNote').classList.toggle('simple-note',simple);
+ document.querySelector('.flower-total').hidden=simple;
+ document.querySelector('.total small').textContent=simple?'무빈소 예상 예산':'예상 장례비';
+ document.querySelector('.flower-total').innerHTML=simple?'무빈소 기본 상품 <b>238만 원</b>':'기본 비용 <b>약 306.5만 원</b>';
+ document.querySelector('#costNote').innerHTML=simple?'0명 기준 상품 예시 238만 원에 참석자별 식사·음료 등 추가 접대 예산을 더합니다. 기본 접대 단가는 1인 2만 원으로 설정한 가정값이며 실제 업체 요금이 아닙니다. 빈소 대여료는 추가하지 않습니다. 별도 식사·모임을 계획할 때의 예산 모델이며, 무빈소 상품에 접대가 포함된다는 뜻은 아닙니다. 화장·장지 등 상품 포함 범위와 추가 비용은 별도 확인이 필요합니다. <a href="https://xn--v92bi0dxxd.com/" target="_blank" rel="noopener noreferrer">상품 출처</a>':'일반 장례 비용은 기존 시각화 금액을 바탕으로 한 보간 예시입니다.';
+ renderGuests(Math.min(lastGuests,simple?50:300));
+}));
+document.querySelector('#receptionRate').addEventListener('input',()=>{if(funeralMode==='simple')renderGuests(lastGuests);});
+renderGuests(50);
+
+function showTip(e,t){tip.textContent=t;tip.classList.add('show');moveTip(e)}function moveTip(e){tip.style.left=Math.min(e.clientX,innerWidth-300)+'px';tip.style.top=Math.min(e.clientY,innerHeight-90)+'px'}function hideTip(){tip.classList.remove('show')}
+</script>
+<script>
+function reportCostHeight(){parent.postMessage({type:'funeral-cost-height',height:document.documentElement.scrollHeight},'*');}
+new ResizeObserver(reportCostHeight).observe(document.body);
+window.addEventListener('load',reportCostHeight);
+</script></body>
+</html>

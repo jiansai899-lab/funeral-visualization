@@ -6,11 +6,11 @@
 <title>조문객이 줄어들면, 장례는 얼마나 달라질까?</title>
 <style>
 :root{
-  --bg:#eef5ff;
-  --panel:#ffffff;
-  --text:#153b6b;
-  --muted:#6683a8;
-  --line:#c9d9ef;
+  --bg:#080b10;
+  --panel:#121923;
+  --text:#eef3f8;
+  --muted:#a0b0c4;
+  --line:#2c3c50;
   --accent:#69d3a7;
   --accent2:#f3a6c8;
   --warm:#8fc7ff;
@@ -20,7 +20,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;background:linear-gradient(180deg,#f7fbff 0%,#eef5ff 55%,#f9fcff 100%);color:var(--text);
+  margin:0;background:linear-gradient(180deg,#080b10 0%,#080b10 55%,#0b1017 100%);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
   line-height:1.55;overflow-x:hidden;
 }
@@ -44,69 +44,69 @@ nav a.active{background:var(--accent);transform:scale(1.45);border-color:var(--a
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#ef7fb0;
   margin-bottom:16px;font-weight:700
 }
-h1{font-size:clamp(44px,7vw,96px);line-height:1.02;letter-spacing:-.045em;margin:0 0 28px;color:#153b6b}
-h2{font-size:clamp(34px,5vw,66px);line-height:1.08;letter-spacing:-.035em;margin:0 0 22px;color:#174b83}
+h1{font-size:clamp(44px,7vw,96px);line-height:1.02;letter-spacing:-.045em;margin:0 0 28px;color:#eef3f8}
+h2{font-size:clamp(34px,5vw,66px);line-height:1.08;letter-spacing:-.035em;margin:0 0 22px;color:#e4edf7}
 h3{font-size:clamp(24px,3vw,38px);line-height:1.12;margin:0 0 16px}
-p{font-size:clamp(17px,1.7vw,23px);color:#345b88;margin:0}
+p{font-size:clamp(17px,1.7vw,23px);color:#b7c5d5;margin:0}
 .zh{display:block;color:var(--muted);font-size:.72em;margin-top:10px}
 .big-number{font-size:clamp(72px,12vw,170px);font-weight:800;letter-spacing:-.06em;line-height:.85}
 .unit{font-size:.24em;color:var(--muted);letter-spacing:0}
 .grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
-.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 14px 40px rgba(44,91,143,.08)}
+.card{background:rgba(18,25,35,.96);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 14px 40px rgba(44,91,143,.08)}
 .kicker{font-size:14px;color:var(--muted);margin-bottom:8px}
 .small{font-size:14px;color:var(--muted)}
-.source{font-size:12px;color:#6f8eb4;margin-top:20px}
+.source{font-size:12px;color:#97aac1;margin-top:20px}
 .source a{text-decoration:none;border-bottom:1px solid #555}
 .hero-visual{
   position:relative;min-height:480px;border:1px solid var(--line);border-radius:28px;box-shadow:0 18px 55px rgba(44,91,143,.10);
-  background:linear-gradient(180deg,#ffffff,#eaf3ff);overflow:hidden;
+  background:linear-gradient(180deg,#121923,#111b28);overflow:hidden;
 }
 .floor{position:absolute;inset:32px;display:grid;grid-template-columns:1fr 1.3fr;gap:18px}
-.room{border:1px solid #c5d7ee;border-radius:16px;position:relative;background:#f8fbff}
-.room .label{position:absolute;top:12px;left:14px;font-size:13px;color:#6683a8}
+.room{border:1px solid #34475e;border-radius:16px;position:relative;background:#111923}
+.room .label{position:absolute;top:12px;left:14px;font-size:13px;color:#a0b0c4}
 .altar{
   position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
-  width:130px;height:78px;border:1px solid #9ab6d9;border-radius:12px
+  width:130px;height:78px;border:1px solid #557395;border-radius:12px
 }
-.altar:before{content:"故";position:absolute;inset:0;display:grid;place-items:center;font-size:34px;color:#3d6797}
+.altar:before{content:"故";position:absolute;inset:0;display:grid;place-items:center;font-size:34px;color:#b7cce5}
 .people{position:absolute;inset:62px 18px 18px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px}
 .person{width:10px;height:10px;border-radius:50%;background:#7fa7d9;opacity:.8;transition:.5s}
 .person.fade{opacity:.12;transform:scale(.6)}
 .pulse{animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(1.03)}}
 .family-bars{display:flex;align-items:end;gap:12px;height:220px;margin-top:18px;margin-bottom:42px}
-.family-bar{flex:1;border-radius:12px 12px 4px 4px;background:#dfeafb;position:relative;min-width:38px}
+.family-bar{flex:1;border-radius:12px 12px 4px 4px;background:#233247;position:relative;min-width:38px}
 .family-bar.highlight{background:var(--accent)}
 .family-bar.highlight:not(.active){background:var(--accent)}
-.family-bar span{position:absolute;bottom:-34px;width:100%;text-align:center;font-size:13px;color:#6f8eb4}
-.scale{height:20px;border-top:1px solid #a9c0df;margin-top:48px;position:relative}
-.scale .tick{position:absolute;top:-7px;width:1px;height:14px;background:#90acd1}
+.family-bar span{position:absolute;bottom:-34px;width:100%;text-align:center;font-size:13px;color:#97aac1}
+.scale{height:20px;border-top:1px solid #557395;margin-top:48px;position:relative}
+.scale .tick{position:absolute;top:-7px;width:1px;height:14px;background:#557395}
 .range{height:26px;border-radius:14px;position:absolute;top:-41px;display:flex;align-items:center;padding:0 12px;font-size:13px;font-weight:700;color:#14365f}
 .range.expected{left:48%;width:47%;background:var(--warm)}
 .range.proper{left:3%;width:45%;background:var(--accent)}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.compare .box{padding:24px;border-radius:20px;background:#ffffff;border:1px solid #c9d9ef}
+.compare .box{padding:24px;border-radius:20px;background:#121923;border:1px solid #2c3c50}
 .compare .pct{font-size:54px;font-weight:800}
 .bar-row{display:grid;grid-template-columns:110px 1fr 70px;gap:12px;align-items:center;margin:16px 0}
-.track{height:18px;background:#e3edf9;border-radius:10px;overflow:hidden}
+.track{height:18px;background:#233247;border-radius:10px;overflow:hidden}
 .fill{height:100%;border-radius:10px;background:var(--accent);width:0;transition:1s}
 .fill.fixed{background:var(--accent2)}
 .funeral-stage{display:grid;grid-template-columns:160px 1fr;gap:30px;align-items:center}
 .person-count{font-size:52px;font-weight:800}
 .rows{display:flex;flex-direction:column;gap:18px}
-.cost-label{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;color:#6683a8}
-.costbar{height:26px;background:#dfeafb;border-radius:14px;overflow:hidden}
+.cost-label{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;color:#a0b0c4}
+.costbar{height:26px;background:#233247;border-radius:14px;overflow:hidden}
 .costbar>div{height:100%;border-radius:14px;transition:1s;width:0}
 .costbar .fixedbar{background:var(--accent2)}
 .costbar .guestbar{background:var(--accent)}
 .floorplan{
   display:grid;grid-template-columns:1fr 1.45fr;gap:14px;min-height:420px;
-  border:1px solid #33343a;border-radius:24px;padding:18px;background:#f8fbff;transition:.8s
+  border:1px solid #33343a;border-radius:24px;padding:18px;background:#111923;transition:.8s
 }
-.fp-room{border:1px solid #bfd1e8;border-radius:14px;position:relative;overflow:hidden;transition:.8s}
-.fp-room .title{position:absolute;top:10px;left:12px;color:#6683a8;font-size:13px}
+.fp-room{border:1px solid #34475e;border-radius:14px;position:relative;overflow:hidden;transition:.8s}
+.fp-room .title{position:absolute;top:10px;left:12px;color:#a0b0c4;font-size:13px}
 .tables{position:absolute;left:15px;right:15px;top:44px;bottom:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;transition:.8s}
-.table-dot{border:1px solid #9ab6d9;border-radius:50%;opacity:.9;transition:.8s}
+.table-dot{border:1px solid #557395;border-radius:50%;opacity:.9;transition:.8s}
 .floorplan.smallplan{grid-template-columns:1.3fr .7fr}
 .floorplan.smallplan .tables{grid-template-columns:repeat(2,1fr)}
 .floorplan.smallplan .table-dot:nth-child(n+5){opacity:.08;transform:scale(.5)}
@@ -115,12 +115,12 @@ p{font-size:clamp(17px,1.7vw,23px);color:#345b88;margin:0}
 .floorplan.tinyplan .table-dot:nth-child(n+3){opacity:.04;transform:scale(.3)}
 .stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .stat-trio .card{text-align:center}
-.stat-trio .n{font-size:56px;font-weight:800;color:#4fbf95}
+.stat-trio .n{font-size:56px;font-weight:800;color:#69d3a7}
 .stat-trio .card:nth-child(2) .n{color:#ef7fb0}
-.stat-trio .card:nth-child(3) .n{color:#4e9be8}
+.stat-trio .card:nth-child(3) .n{color:#8fc7ff}
 .donut{
   width:320px;height:320px;border-radius:50%;
-  background:conic-gradient(var(--accent) 0 71.8%, #dfeafb 71.8% 100%);
+  background:conic-gradient(var(--accent) 0 71.8%, #233247 71.8% 100%);
   display:grid;place-items:center;margin:auto;position:relative
 }
 .donut:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:var(--bg)}
@@ -129,18 +129,18 @@ p{font-size:clamp(17px,1.7vw,23px);color:#345b88;margin:0}
 .reality{
   display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch
 }
-.reality .panel{border-radius:24px;padding:30px;border:1px solid var(--line);background:#f8fbff}
+.reality .panel{border-radius:24px;padding:30px;border:1px solid var(--line);background:#111923}
 .reality .huge{font-size:70px;font-weight:850;line-height:1}
 .final{
   text-align:center;max-width:960px;margin:auto
 }
 .final .tagline{font-size:clamp(46px,8vw,110px);font-weight:850;line-height:.95;letter-spacing:-.055em}
-.accent{color:#4fbf95}
+.accent{color:#69d3a7}
 .fadeup{opacity:0;transform:translateY(28px);transition:.8s}
 .fadeup.show{opacity:1;transform:none}
 .controls{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
 button{
-  background:#ffffff;color:#3d6797;border:1px solid #b7cae3;border-radius:999px;
+  background:#121923;color:#b7cce5;border:1px solid #354b65;border-radius:999px;
   padding:10px 15px;font:inherit;cursor:pointer
 }
 button.active{background:var(--accent);color:#14365f;border-color:var(--accent)}
@@ -161,7 +161,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 
 /* 추가 인터랙션 */
 .tooltip{
-  position:fixed;z-index:200;pointer-events:none;background:#153b6b;color:white;
+  position:fixed;z-index:200;pointer-events:none;background:#eef3f8;color:white;
   padding:8px 10px;border-radius:10px;font-size:12px;opacity:0;transform:translateY(6px);
   transition:.18s;box-shadow:0 8px 24px rgba(21,59,107,.18)
 }
@@ -181,26 +181,26 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 .range:hover{transform:translateY(-4px)}
 .reason-cloud{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
 .reason-chip{
-  border:1px solid var(--line);background:white;border-radius:999px;padding:16px 20px;
-  font-weight:700;color:#315d8e;cursor:pointer;transition:.25s
+  border:1px solid var(--line);background:#121923;border-radius:999px;padding:16px 20px;
+  font-weight:700;color:#b7cce5;cursor:pointer;transition:.25s
 }
-.reason-chip:hover,.reason-chip.active{background:#fff3f8;border-color:#ef7fb0;color:#c95a8a;transform:translateY(-3px)}
+.reason-chip:hover,.reason-chip.active{background:#322033;border-color:#ef7fb0;color:#ffabd0;transform:translateY(-3px)}
 .reason-detail{
-  margin-top:18px;padding:20px;border-radius:18px;background:#ffffff;border:1px solid var(--line);
+  margin-top:18px;padding:20px;border-radius:18px;background:#121923;border:1px solid var(--line);
   min-height:92px;box-shadow:0 10px 28px rgba(44,91,143,.07)
 }
 .age-bars{display:flex;gap:12px;align-items:flex-end;height:220px;margin-top:12px;margin-bottom:44px}
-.age-bar{flex:1;background:#cfe2f8;border-radius:14px 14px 6px 6px;position:relative;cursor:pointer;transition:.3s}
-.age-bar:hover{transform:translateY(-7px);background:#b8d8fb}
+.age-bar{flex:1;background:#3a5675;border-radius:14px 14px 6px 6px;position:relative;cursor:pointer;transition:.3s}
+.age-bar:hover{transform:translateY(-7px);background:#527da8}
 .age-bar.active{background:#69d3a7}
-.age-bar .v{position:absolute;top:-34px;width:100%;text-align:center;font-weight:800;color:#174b83}
-.age-bar .l{position:absolute;bottom:-30px;width:100%;text-align:center;color:#6683a8;font-size:13px}
+.age-bar .v{position:absolute;top:-34px;width:100%;text-align:center;font-weight:800;color:#e4edf7}
+.age-bar .l{position:absolute;bottom:-30px;width:100%;text-align:center;color:#a0b0c4;font-size:13px}
 .toggle-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .toggle-pill{
-  padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);
-  cursor:pointer;transition:.22s;color:#315d8e
+  padding:10px 14px;border-radius:999px;background:#121923;border:1px solid var(--line);
+  cursor:pointer;transition:.22s;color:#b7cce5
 }
-.toggle-pill.active{background:#153b6b;color:#fff;border-color:#153b6b}
+.toggle-pill.active{background:#eef3f8;color:#fff;border-color:#eef3f8}
 .compare-meter{position:relative;height:110px;margin-top:34px}
 .compare-dot{
   position:absolute;top:44px;width:26px;height:26px;border-radius:50%;transform:translateX(-50%);
@@ -208,7 +208,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 }
 .compare-dot.idea{background:#69d3a7}
 .compare-dot.real{background:#ef7fb0}
-.compare-line{position:absolute;left:5%;right:5%;top:56px;height:4px;background:#d8e5f4;border-radius:999px}
+.compare-line{position:absolute;left:5%;right:5%;top:56px;height:4px;background:#233247;border-radius:999px}
 .compare-gap{
   position:absolute;top:50px;height:16px;border-radius:999px;background:linear-gradient(90deg,#69d3a7,#ef7fb0);
   opacity:.35;transition:.8s
@@ -216,22 +216,22 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 .sticky-story{display:grid;grid-template-columns:minmax(300px,.82fr) minmax(480px,1.18fr);gap:48px;align-items:start}
 .sticky-vis{position:sticky;top:120px}
 .story-steps{display:flex;flex-direction:column;gap:42vh}
-.story-step{padding:26px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.8);transition:.35s;cursor:pointer;user-select:none}
-.story-step.active{border-color:#69d3a7;box-shadow:0 14px 40px rgba(105,211,167,.18);transform:translateX(8px);background:#f8fffc}
-.metric-bubble{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#edf7ff;color:#315d8e;font-size:13px}
-.mini-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:#6683a8}
+.story-step{padding:26px;border-radius:20px;border:1px solid var(--line);background:rgba(18,25,35,.96);transition:.35s;cursor:pointer;user-select:none}
+.story-step.active{border-color:#69d3a7;box-shadow:0 14px 40px rgba(105,211,167,.18);transform:translateX(8px);background:#142b26}
+.metric-bubble{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#19283a;color:#b7cce5;font-size:13px}
+.mini-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:#a0b0c4}
 .mini-legend span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .mini-legend .g:before{background:#69d3a7}.mini-legend .p:before{background:#ef7fb0}.mini-legend .b:before{background:#8fc7ff}
 @media(max-width:900px){.sticky-story{grid-template-columns:1fr}.sticky-vis{position:relative;top:auto}.story-steps{gap:28px}}
 
 
 .interactive-slider-wrap{
-  margin-top:22px;padding:18px;border-radius:18px;background:#f4f9ff;border:1px solid #c9d9ef
+  margin-top:22px;padding:18px;border-radius:18px;background:#101a27;border:1px solid #2c3c50
 }
-.interactive-slider-head{display:flex;justify-content:space-between;align-items:center;color:#315d8e;font-size:14px}
+.interactive-slider-head{display:flex;justify-content:space-between;align-items:center;color:#b7cce5;font-size:14px}
 .interactive-slider-head strong{font-size:22px;color:#ef7fb0}
 .visitor-slider{width:100%;margin:18px 0 5px;accent-color:#69d3a7;cursor:pointer}
-.slider-scale{display:flex;justify-content:space-between;font-size:11px;color:#7b95b5}
+.slider-scale{display:flex;justify-content:space-between;font-size:11px;color:#97aac1}
 .click-flash{animation:clickFlash .35s ease}
 @keyframes clickFlash{0%{transform:scale(1)}50%{transform:scale(.985)}100%{transform:scale(1)}}
 .person-cloud{
@@ -252,9 +252,9 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
   text-align:left;
   padding:24px 26px;
   border-radius:22px;
-  border:1px solid #c9d9ef;
-  background:#fff;
-  color:#174b83;
+  border:1px solid #2c3c50;
+  background:#121923;
+  color:#e4edf7;
   cursor:pointer;
   transition:.25s ease;
   box-shadow:0 10px 28px rgba(44,91,143,.06);
@@ -264,7 +264,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
   font-size:34px;
   line-height:1;
   margin-bottom:12px;
-  color:#153b6b;
+  color:#eef3f8;
 }
 .option-card span{
   display:block;
@@ -277,7 +277,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
   box-shadow:0 14px 36px rgba(44,91,143,.11);
 }
 .option-card.active{
-  background:#f4fffa;
+  background:#142b26;
   border-color:#69d3a7;
   box-shadow:0 14px 34px rgba(105,211,167,.16);
 }
@@ -286,7 +286,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 /* 비용 인식 축 클릭 표시 */
 .cost-range-btn{
   border:none;
-  color:#153b6b;
+  color:#eef3f8;
   cursor:pointer;
   height:38px;
   padding:0 14px;
@@ -323,6 +323,51 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 .axis-marker.start{left:0}
 .axis-marker.end{left:50%}
 
+
+/* Dark edition and responsive layout */
+:root{color-scheme:dark}
+body:before,body:after{opacity:.06}
+h1,h2{overflow-wrap:break-word;word-break:keep-all}
+.card,.hero-visual,.option-card{box-shadow:0 18px 48px rgba(0,0,0,.22)}
+.family-bar.active{outline:none}
+.cost-range-btn,.cost-range-btn.active{color:#102336;outline:none;border:none}
+button.active{color:#102336}
+.option-card.active{color:#dcece7}.option-card.active strong{color:#69d3a7}
+.toggle-pill.active{background:#69d3a7;color:#102336;border-color:#69d3a7}
+.tooltip{background:#223247;color:#eef3f8}
+.sankey-section{display:block;padding:80px 4vw;background:#050607;min-height:0}
+.sankey-section .wrap{max-width:1440px}
+.sankey-section h2{margin-bottom:18px}
+
+.sankey-frame{display:block;margin-top:24px;border:0;width:100%;height:auto;aspect-ratio:1740/1300;background:#050607}
+.sankey-help{font-size:14px;color:#a0b0c4;margin-top:16px}
+.grid-2,.sticky-story{min-width:0}.grid-2>* ,.sticky-story>*{min-width:0}
+.big-number{font-size:clamp(48px,8vw,130px)}
+.family-bars{margin-bottom:50px}.age-bars{margin-top:42px;margin-bottom:48px}
+.floorplan{cursor:default}
+.person-count{font-size:clamp(32px,4vw,52px)}
+:focus-visible{outline:2px solid #8fc7ff;outline-offset:5px}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr;gap:32px}.sticky-story{grid-template-columns:1fr}.sankey-frame{height:720px;aspect-ratio:auto}.sankey-section{padding:64px 22px}}
+@media(max-width:480px){.card{padding:20px}.floorplan{min-height:320px;padding:10px;gap:8px}.altar{width:80px;height:64px}.tables{left:8px;right:8px;gap:6px}.fp-room .title{left:8px;font-size:11px}.family-bars,.age-bars{gap:8px}.family-bar span,.age-bar .l{font-size:11px}.age-bar .v{font-size:13px}.donut{width:270px;height:270px}.donut:after{width:190px;height:190px}.sankey-frame{height:690px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.fadeup{opacity:1;transform:none}}
+
+
+#s2 .grid-2{gap:80px}
+#s2 .card{padding:40px 30px}
+#s2 .card .kicker{margin-bottom:38px}
+#s2 .big-number{font-variant-numeric:tabular-nums;font-size:clamp(48px,7vw,104px);white-space:nowrap}
+#s2 .big-number .unit{margin-left:10px}
+#s2 .card .small{margin-top:32px}
+
+/* Uniform black page background */
+:root{--bg:#000000}
+html,body,.section{background:#000000}
+body:before,body:after{display:none}
+.sankey-section,.sankey-frame{background:#000000}
+
+#costAxis .axis-marker{display:none}
+
+.cost-replacement{display:block;min-height:0;padding-top:72px;padding-bottom:72px}.cost-replacement .wrap{max-width:1280px}
 </style>
 </head>
 <body><div id="tooltip" class="tooltip"></div>
@@ -346,6 +391,17 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
   </div>
 </section>
 
+
+<section id="sankey" class="section sankey-section">
+ <div class="wrap">
+  <div class="eyebrow">첫 번째 이야기 · 장례 비용의 흐름</div>
+  <h2>한국 장례의 돈은 어디에 쓰일까요?</h2>
+  <p>비용의 흐름 위에 마우스를 올려 각 항목의 연결을 살펴보세요.</p>
+  <iframe class="sankey-frame" title="한국 장례 비용 산키 다이어그램" src="sankey.html"></iframe>
+  <p class="sankey-help">도표 위에 마우스를 올리면 해당 비용 흐름이 강조됩니다.</p>
+ </div>
+</section>
+
 <section id="s2" class="section">
   <div class="wrap grid-2">
     <div class="fadeup">
@@ -353,11 +409,11 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
       <h2>죽음은 줄어들지 않았습니다.</h2>
       <p>2025년 한국의 사망자는 <b>362,968명</b>. 문제는 죽음의 수가 아니라, 죽음을 함께 맞이하는 가족과 관계의 구조가 바뀌고 있다는 점입니다.
       </p>
-      <div class="source">Source · 국가데이터처, 2025년 사망원인통계</div>
+      <div class="source">자료 출처 · 국가데이터처, 2025년 사망원인통계</div>
     </div>
     <div class="card fadeup">
       <div class="kicker">2025 사망자 수</div>
-      <div class="big-number">362,968<span class="unit">명</span></div>
+      <div class="big-number" aria-label="362,968명"><span id="deathCount" aria-hidden="true">362,968</span><span class="unit" aria-hidden="true">명</span></div>
       <p class="small">전년 대비 약 1.2% 증가</p>
     </div>
   </div>
@@ -370,7 +426,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
       <h2>가족의 단위는 더 작아지고 있습니다.</h2>
       <p>2024년 한국의 1인 가구는 약 <b>804.5만 가구</b>, 전체 일반가구의 <b>36.1%</b>입니다.
       </p>
-      <div class="source">Source · 국가데이터처, 1인가구 통계</div>
+      <div class="source">자료 출처 · 국가데이터처, 1인가구 통계</div>
     </div>
     <div class="card fadeup">
       <div class="kicker">가구 유형의 변화</div>
@@ -403,7 +459,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
       <h2>사람들이 예상하는 장례비와,<br>적정하다고 생각하는 장례비는 다릅니다.</h2>
       <p><b>61.1%</b>는 실제 장례에 1,000만~2,000만 원 정도가 들 것으로 예상했고, <b>57.2%</b>는 적정 비용이 1,000만 원 미만이라고 답했습니다.
       </p>
-      <div class="source">Source · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
+      <div class="source">자료 출처 · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
     </div>
     <div class="card fadeup">
       <div class="kicker">비용 인식의 차이</div>
@@ -420,7 +476,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
           <div id="axisMarkerStart" class="axis-marker start"></div>
           <div id="axisMarkerEnd" class="axis-marker end"></div>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:#6f8eb4">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#97aac1">
           <span>0</span><span>500</span><span>1,000</span><span>1,500</span><span>2,000만원</span>
         </div>
       </div>
@@ -429,59 +485,11 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
 </section>
 
 
-<section id="s6" class="section">
-  <div class="wrap">
-    <div class="fadeup" style="max-width:900px;margin-bottom:42px">
-      <div class="eyebrow">05 · 시각화 1</div>
-      <h2>시각화 1 · 비용<br><span class="accent">사람이 줄어도 장례비가 같은 비율로 줄어들지는 않습니다.</span></h2>
-      <p>고정비는 크게 변하지 않지만, 음식·음료·접객 관련 비용은 조문객 수에 따라 달라집니다.</p>
-    </div>
-    <div class="sticky-story">
-      <div class="click-options" id="costStory">
-        <button class="option-card active" data-count="300" type="button">
-          <strong>300명</strong><span>많은 조문객을 전제로 한 장례</span>
-        </button>
-        <button class="option-card" data-count="150" type="button">
-          <strong>150명</strong><span>조문객이 절반으로 줄어도 고정비는 거의 유지</span>
-        </button>
-        <button class="option-card" data-count="50" type="button">
-          <strong>50명</strong><span>접객비는 크게 줄지만 기본 비용은 유지</span>
-        </button>
-      </div>
-      <div class="card fadeup">
-        <div class="metric-bubble">비용 구조 변화 지수</div>
-        <div class="person-cloud" id="costPeople" aria-label="조문객 수 시각화"></div>
-        <div class="funeral-stage" style="margin-top:22px">
-          <div>
-            <div class="kicker">조문객</div>
-            <div class="person-count" id="countLabel">300명</div>
-          </div>
-          <div class="rows">
-            <div>
-              <div class="cost-label"><span>고정비</span><span id="fixedText">80</span></div>
-              <div class="costbar"><div id="fixedBar" class="fixedbar"></div></div>
-            </div>
-            <div>
-              <div class="cost-label"><span>접객비</span><span id="guestText">100</span></div>
-              <div class="costbar"><div id="guestBar" class="guestbar"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="mini-legend"><span class="p">고정비</span><span class="g">접객비</span></div>
-
-        <div class="interactive-slider-wrap">
-          <div class="interactive-slider-head">
-            <span>직접 조문객 수를 바꿔보세요</span>
-            <strong id="visitorSliderValue">300명</strong>
-          </div>
-          <input id="visitorSlider" class="visitor-slider" type="range" min="50" max="300" step="10" value="300" aria-label="조문객 수 조절">
-          <div class="slider-scale"><span>50명</span><span>150명</span><span>300명</span></div>
-        </div>
-
-        <p class="small" style="margin-top:22px">※ 위 수치는 전국 평균가격이 아니라 ‘구조 변화를 설명하기 위한 지수형 시각화’입니다.</p>
-      </div>
-    </div>
-  </div>
+<section id="s6" class="section cost-replacement">
+ <div class="wrap">
+  <div class="eyebrow">05 · 시각화 1 · 비용</div>
+  <iframe id="costVisualization" title="조문객 수에 따라 달라지는 장례비" src="funeral-cost-visualization.html" style="display:block;width:100%;height:1200px;border:0;background:#000"></iframe>
+ </div>
 </section>
 
 
@@ -498,7 +506,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
       <div class="card"><div class="n">60.5%</div><h3>비용 부담</h3><p class="small">장례 비용 자체가 부담스럽다</p></div>
       <div class="card"><div class="n">42.8%</div><h3>비교의 어려움</h3><p class="small">서비스·상품 가격 비교가 어렵다</p></div>
     </div>
-    <div class="source">Source · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
+    <div class="source">자료 출처 · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
   </div>
 </section>
 
@@ -546,7 +554,7 @@ body:after{width:300px;height:300px;background:#ffd0e2;right:-70px;bottom:10vh}
       <h2>사람들의 생각은 이미 바뀌고 있습니다.</h2>
       <p><b>71.8%</b>는 자신의 장례라면 무빈소 장례를 고려할 의향이 있다고 답했습니다.
       </p>
-      <div class="source">Source · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
+      <div class="source">자료 출처 · 엠브레인 트렌드모니터, 2026 장례문화 인식 조사</div>
     </div>
   </div>
 </section>
@@ -640,7 +648,7 @@ const obs=new IntersectionObserver(entries=>{
       }
     }
   })
-},{threshold:.35});
+},{threshold:.08});
 sections.forEach(s=>obs.observe(s));
 
 window.addEventListener('scroll',()=>{
@@ -650,29 +658,6 @@ window.addEventListener('scroll',()=>{
 
 const hero=document.getElementById('heroPeople');
 for(let i=0;i<70;i++){const d=document.createElement('div');d.className='person';hero.appendChild(d)}
-
-function setCost(count){
-  const data={
-    300:{fixed:80,guest:100},
-    150:{fixed:78,guest:52},
-    50:{fixed:76,guest:18}
-  }[count];
-  document.getElementById('countLabel').textContent=count+'명';
-  document.getElementById('fixedBar').style.width=data.fixed+'%';
-  document.getElementById('guestBar').style.width=data.guest+'%';
-  document.getElementById('fixedText').textContent=data.fixed;
-  document.getElementById('guestText').textContent=data.guest;
-  document.querySelectorAll('#costControls button').forEach(b=>b.classList.toggle('active',+b.dataset.count===count));
-  document.querySelectorAll('#costStory .option-card').forEach(s=>s.classList.toggle('active',+s.dataset.count===count));
-}
-const costControls=document.getElementById('costControls');
-if(costControls){
-  costControls.addEventListener('click',e=>{
-    const btn=e.target.closest('[data-count]');
-    if(btn)setCost(+btn.dataset.count);
-  });
-}
-setTimeout(()=>setCost(300),300);
 
 function setSpace(size){
   const fp=document.getElementById('floorplan');
@@ -763,64 +748,6 @@ function flash(el){
   el.classList.add('click-flash');
 }
 
-function ensureCostPeople(){
-  const cloud=document.getElementById('costPeople');
-  if(!cloud || cloud.children.length)return;
-  for(let i=0;i<100;i++){
-    const dot=document.createElement('span');
-    dot.title='조문객';
-    cloud.appendChild(dot);
-  }
-}
-function updateCostPeople(count){
-  ensureCostPeople();
-  const visible=Math.max(1,Math.round(count/3));
-  document.querySelectorAll('#costPeople span').forEach((d,i)=>{
-    d.classList.toggle('off',i>=visible);
-  });
-}
-
-// Smooth model for manual slider: fixed cost changes only slightly, guest cost changes strongly.
-function setCostManual(count){
-  const fixed=Math.round(76 + (count-50)*(4/250));
-  const guest=Math.round(18 + (count-50)*(82/250));
-  const countLabel=document.getElementById('countLabel');
-  const fixedBar=document.getElementById('fixedBar');
-  const guestBar=document.getElementById('guestBar');
-  const fixedText=document.getElementById('fixedText');
-  const guestText=document.getElementById('guestText');
-  if(countLabel)countLabel.textContent=count+'명';
-  if(fixedBar)fixedBar.style.width=fixed+'%';
-  if(guestBar)guestBar.style.width=guest+'%';
-  if(fixedText)fixedText.textContent=fixed;
-  if(guestText)guestText.textContent=guest;
-  updateCostPeople(count);
-}
-
-const slider=document.getElementById('visitorSlider');
-const sliderValue=document.getElementById('visitorSliderValue');
-if(slider){
-  slider.addEventListener('input',()=>{
-    const count=+slider.value;
-    if(sliderValue)sliderValue.textContent=count+'명';
-    setCostManual(count);
-  });
-}
-
-// Clicking the 300 / 150 / 50 narrative cards now updates immediately.
-document.querySelectorAll('#costStory .option-card').forEach(step=>{
-  step.setAttribute('tabindex','0');
-  const activate=()=>{
-    const count=+step.dataset.count;
-    setCost(count);
-    updateCostPeople(count);
-    if(slider){slider.value=count;if(sliderValue)sliderValue.textContent=count+'명';}
-    flash(step);
-  };
-  step.addEventListener('click',activate);
-  step.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
-});
-
 document.querySelectorAll('#spaceStory .option-card').forEach(step=>{
   step.setAttribute('tabindex','0');
   const activate=()=>{ setSpace(step.dataset.size); flash(step); };
@@ -833,7 +760,7 @@ document.querySelectorAll('.table-dot').forEach((table,i)=>{
   table.addEventListener('click',e=>{
     e.stopPropagation();
     table.style.background=table.style.background ? '' : '#f3a6c8';
-    table.style.borderColor=table.style.background ? '#ef7fb0' : '#9ab6d9';
+    table.style.borderColor=table.style.background ? '#ef7fb0' : '#557395';
     flash(table);
   });
 });
@@ -845,9 +772,7 @@ document.querySelectorAll('.stat-trio .card').forEach(card=>{
 });
 
 // Initialize all dynamic visuals.
-updateCostPeople(300);
-if(slider){slider.value=300;if(sliderValue)sliderValue.textContent='300명';}
-setCost(300);
+
 setSpace('large');
 
 
@@ -875,6 +800,44 @@ costRangeButtons.forEach(btn=>{
 });
 setCostAxis('proper');
 
+
+document.querySelectorAll('.family-bar,.age-bar,.reason-chip,.table-dot').forEach(el=>{
+ el.tabIndex=0;el.setAttribute('role','button');
+ el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}});
+});
+navLinks.forEach((a,i)=>a.setAttribute('aria-label',sections[i].querySelector('h1,h2')?.textContent.trim()||'이야기 '+(i+1)));
+
+
+// Count up once when the death statistic enters the viewport.
+const deathCounter=document.getElementById('deathCount');
+if(deathCounter){
+ const target=362968;
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!reduced){
+  deathCounter.textContent='0';
+  const counterObserver=new IntersectionObserver(entries=>{
+   if(!entries.some(entry=>entry.isIntersecting))return;
+   counterObserver.disconnect();
+   let started;
+   function tick(now){
+    if(started===undefined)started=now;
+    const progress=Math.min(1,(now-started)/1800);
+    const eased=1-Math.pow(1-progress,3);
+    deathCounter.textContent=Math.round(target*eased).toLocaleString('ko-KR');
+    if(progress<1)requestAnimationFrame(tick);
+   }
+   requestAnimationFrame(tick);
+  },{threshold:.45});
+  counterObserver.observe(deathCounter.closest('.card'));
+ }
+}
+
+const costFrame=document.getElementById('costVisualization');
+window.addEventListener('message',event=>{
+ if(event.source!==costFrame.contentWindow||event.data?.type!=='funeral-cost-height')return;
+ const height=Number(event.data.height);
+ if(Number.isFinite(height)&&height>0&&height<10000)costFrame.style.height=Math.ceil(height)+'px';
+});
 </script>
 </body>
 </html>
