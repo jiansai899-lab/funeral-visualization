@@ -66,6 +66,15 @@ body{background:#000;color:#efabc5}
 .funeral-mode{display:flex;gap:10px;margin-bottom:20px}.funeral-mode button{padding:11px 18px;border:1px solid #294237;border-radius:10px;background:#000;color:#9eddb8;cursor:pointer}.funeral-mode button[aria-pressed="true"]{border-color:#efabc5;color:#efabc5;background:#201017}.cost-note{margin:14px 0 0;font-size:12px;line-height:1.7;color:#9eddb8}.cost-note a{color:#efabc5}.scenario-select button:disabled{opacity:.3;cursor:not-allowed}
 
 .cost-note.simple-note{color:#858585;font-size:10px;line-height:1.8;margin-top:24px}.cost-note.simple-note a{color:#969696}#simpleCostBreakdown{color:#858585;font-size:11px}
+
+/* Explicit track and thumb remain visible on a black canvas. */
+#guestRange{appearance:none;-webkit-appearance:none;display:block;width:100%;height:28px;margin:0;background:transparent;cursor:pointer;color-scheme:dark}
+#guestRange::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:#4e7960;border:1px solid #9eddb8}
+#guestRange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;margin-top:-8px;border-radius:50%;background:#efa9c0;border:2px solid #ffe0eb;box-shadow:0 0 0 3px #000}
+#guestRange::-moz-range-track{height:6px;border-radius:999px;background:#4e7960;border:1px solid #9eddb8}
+#guestRange::-moz-range-progress{height:6px;border-radius:999px;background:#9eddb8}
+#guestRange::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#efa9c0;border:2px solid #ffe0eb;box-shadow:0 0 0 3px #000}
+#guestRange:focus-visible{outline:2px solid #9eddb8;outline-offset:5px;border-radius:8px}
 </style>
 </head>
 <body>
